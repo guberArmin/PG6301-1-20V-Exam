@@ -9,6 +9,8 @@ import React from "react"
 import {Navigation} from "./navigation";
 import {GameDescription} from "./game-description";
 import Home from "./home";
+import Login from "./login";
+import SignUp from "./signup";
 
 class App extends React.Component {
     constructor(props) {
@@ -79,8 +81,15 @@ class App extends React.Component {
                                   fetchAndUpdateUserInfo={this.fetchAndUpdateUserInfo}
                             />
                         }/>
-                        <Route exact path={"/"} render={props =>
-                            <Home {...props}/>
+                        <Route exact path={"/login"} render={props =>
+                            <Login {...props}
+                                   fetchAndUpdateUserInfo={this.fetchAndUpdateUserInfo}
+                            />
+                        }/>
+                        <Route exact path={"/signup"} render={props =>
+                            <SignUp {...props}
+                                   fetchAndUpdateUserInfo={this.fetchAndUpdateUserInfo}
+                            />
                         }/>
                         <Route exact path={"/description"} render={props =>
                             <GameDescription {...props}/>

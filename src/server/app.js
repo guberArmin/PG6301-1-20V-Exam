@@ -10,6 +10,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const users = require("./db/users");
 const players = require("./db/players-collection");
 const playersApi = require("./routes/players-api");
+const authApi = require("./routes/auth-api");
 
 app.use(bodyParser.json());
 players.defaultCollectionInitializer();
@@ -62,6 +63,7 @@ app.use(passport.session());
 //End of login system
 
 app.use("/api",playersApi );
+app.use("/api",authApi );
 app.use((req, res, next) => {
     res.sendFile(path.resolve(__dirname, '..', '..', 'public', 'index.html'));
 });

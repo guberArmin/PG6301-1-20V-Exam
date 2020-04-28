@@ -1,3 +1,7 @@
+/**
+ * This file is not copy but, when it comes to structure, it is inspired by: https://github.com/arcuri82/web_development_and_api_design/blob/master/exercise-solutions/quiz-game/part-10/src/server/db/users.js
+ */
+
 const players = require("./players-collection");
 const users = new Map();
 
