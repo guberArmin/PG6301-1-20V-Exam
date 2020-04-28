@@ -48,6 +48,7 @@ export class Navigation extends React.Component {
                 <div>
                     <label>You are not logged in!
                         <Link id={"loginBtn"} to={"/login"} role="button" className={"btn btn-light m-3"}>Login</Link>
+                        <Link id={"signUpBtn"} to={"/signUp"} role="button" className={"btn btn-danger m-3"}>Sign up</Link>
                     </label>
                 </div>
             </div>
@@ -74,7 +75,7 @@ export class Navigation extends React.Component {
                         </Link>
                         <ul className={"navbar-nav"}>
                             <li className={"nav-item "}>
-                                <a className="nav-link" href="/new">Add </a>
+                                <a className="nav-link" href="/description">View all collectibles </a>
                             </li>
                         </ul>
                     </div>

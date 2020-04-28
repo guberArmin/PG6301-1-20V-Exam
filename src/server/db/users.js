@@ -1,7 +1,9 @@
+const players = require("./players-collection");
 const users = new Map();
-users.set("admin", {id:"admin",password:"admin"});
-users.set("foo", {id:"foo",password:"foo"});
-users.set("bar", {id:"bar",password:"bar"});
+
+//Some users for testing
+createUser("foo","foo");
+createUser("bar","bar");
 
 function getUser(id) {
     return users.get(id);
@@ -9,22 +11,27 @@ function getUser(id) {
 
 function checkCredentials(id, password) {
     const currentUser = getUser(id);
-    if (!currentUser){
+    if (!currentUser) {
         return false;
-    }
-    else{
+    } else {
         return currentUser.password === password;
 
     }
 }
 
+//When we create new user we create 3 loot boxes for that user
+//Each loot box is just two random players from database
+//They could repeat
+//There is no rarity included for players as database is small
 function createUser(id, password) {
     if (getUser(id)) //If user with given id is registered we can register it again
         return false;
 
     const user = {
         id: id,
-        password: password
+        password: password,
+        players: [],
+        lootBoxes: players.getLootBoxes(3)
     };
 
     users.set(id, user);
@@ -32,8 +39,9 @@ function createUser(id, password) {
     return true;
 }
 
+
 function deleteAllUsers() {
     users.clear();
 }
 
-module.exports = {deleteAllUsers,getUser, checkCredentials, createUser};
+module.exports = {deleteAllUsers, getUser, checkCredentials, createUser};

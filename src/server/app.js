@@ -7,10 +7,12 @@ const passport = require('passport');
 const session = require("express-session");
 const LocalStrategy = require('passport-local').Strategy;
 
-const Users = require("./db/users");
-
+const users = require("./db/users");
+const players = require("./db/players-collection");
+const playersApi = require("./routes/players-api");
 
 app.use(bodyParser.json());
+players.defaultCollectionInitializer();
 
 //Login system
 app.use(session({
@@ -28,13 +30,13 @@ passport.use(new LocalStrategy(
     },
     function (userId, password, done) {
 
-        const ok = Users.checkCredentials(userId, password);
+        const ok = users.checkCredentials(userId, password);
 
         if (!ok) {
             return done(null, false, {message: 'Invalid username/password'});
         }
 
-        const user = Users.getUser(userId);
+        const user = users.getUser(userId);
         return done(null, user);
     }
 ));
@@ -46,7 +48,7 @@ passport.serializeUser(function (user, done) {
 passport.deserializeUser(function (id, done) {
 
 
-    const user = Users.getUser(id);
+    const user = users.getUser(id);
 
     if (user) {
         done(null, user);
@@ -59,6 +61,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 //End of login system
 
+app.use("/api",playersApi );
 app.use((req, res, next) => {
     res.sendFile(path.resolve(__dirname, '..', '..', 'public', 'index.html'));
 });

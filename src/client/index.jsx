@@ -7,6 +7,8 @@ import {BrowserRouter, Switch, Route} from "react-router-dom"
 import React from "react"
 
 import {Navigation} from "./navigation";
+import {GameDescription} from "./game-description";
+import Home from "./home";
 
 class App extends React.Component {
     constructor(props) {
@@ -53,7 +55,6 @@ class App extends React.Component {
     notFound() {
         return (
             <div>
-                <h2>Page not found</h2>
                 <p className={"alert alert-warning"}>
                     Page not found, double check you url!
                 </p>
@@ -71,6 +72,19 @@ class App extends React.Component {
                 />
                 <div>
                     <Switch>
+
+                        <Route exact path="/" render={props =>
+                            <Home {...props}
+                                  user={this.state.user}
+                                  fetchAndUpdateUserInfo={this.fetchAndUpdateUserInfo}
+                            />
+                        }/>
+                        <Route exact path={"/"} render={props =>
+                            <Home {...props}/>
+                        }/>
+                        <Route exact path={"/description"} render={props =>
+                            <GameDescription {...props}/>
+                        }/>
                         <Route component={this.notFound}/>
                     </Switch>
                 </div>
