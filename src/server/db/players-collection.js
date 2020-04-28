@@ -6,24 +6,25 @@ let counter = 0;
 
 function defaultCollectionInitializer(){
     players.clear();
-    addPlayerToList("Paulo", "Dybala", "Argentina", "Juventus", "26");
-    addPlayerToList("Miralem", "Pjanic", "Bosnia and Herzegovina", "Juventus", "30");
-    addPlayerToList("Jadon", "Sancho", "England", "BVB", "20");
-    addPlayerToList("Timo", "Werner", "Germany", "RB Leipzig", "24");
-    addPlayerToList("Pierre-Emerick", "Aubameyang", "Gabon", "Arsenal", "30");
-    addPlayerToList("Sergio", "Aguero", "Argentina", "Manchester City", "31");
-    addPlayerToList("Kevin", "De Bruyne", "Netherlands", "Manchester City", "28");
-    addPlayerToList("Robert", "Lewandowski", "Poland", "Bayern Munich", "31");
-    addPlayerToList("Luis", "Suarez", "Uruguay", "Barcelona", "33");
-    addPlayerToList("Virgil", "Van Dijk", "Netherlands", "Liverpool", "28");
-    addPlayerToList("Frankie", "De Jong", "Netherlands", "Barcelona", "22");
-    addPlayerToList("Eden", "Hazard", "Belgium", "Real Madrig", "29");
-    addPlayerToList("Kylian", "Mbappe", "France", "PSG", "21");
-    addPlayerToList("Ronaldo", "Cristiano", "Portugal", "Juventsu", "35");
-    addPlayerToList("Lionel", "Messi", "Argentina", "Barcelon", "32");
+    addPlayerToCollection("Paulo", "Dybala", "Argentina", "Juventus", "26");
+    addPlayerToCollection("Miralem", "Pjanic", "Bosnia and Herzegovina", "Juventus", "30");
+    addPlayerToCollection("Jadon", "Sancho", "England", "BVB", "20");
+    addPlayerToCollection("Timo", "Werner", "Germany", "RB Leipzig", "24");
+    addPlayerToCollection("Pierre-Emerick", "Aubameyang", "Gabon", "Arsenal", "30");
+    addPlayerToCollection("Sergio", "Aguero", "Argentina", "Manchester City", "31");
+    addPlayerToCollection("Kevin", "De Bruyne", "Netherlands", "Manchester City", "28");
+    addPlayerToCollection("Robert", "Lewandowski", "Poland", "Bayern Munich", "31");
+    addPlayerToCollection("Luis", "Suarez", "Uruguay", "Barcelona", "33");
+    addPlayerToCollection("Virgil", "Van Dijk", "Netherlands", "Liverpool", "28");
+    addPlayerToCollection("Frankie", "De Jong", "Netherlands", "Barcelona", "22");
+    addPlayerToCollection("Eden", "Hazard", "Belgium", "Real Madrig", "29");
+    addPlayerToCollection("Kylian", "Mbappe", "France", "PSG", "21");
+    addPlayerToCollection("Ronaldo", "Cristiano", "Portugal", "Juventsu", "35");
+    addPlayerToCollection("Lionel", "Messi", "Argentina", "Barcelon", "32");
 }
 
-function addPlayerToList(name, lastName,nationality, team, age){
+defaultCollectionInitializer();
+function addPlayerToCollection(name, lastName,nationality, team, age){
     //Lets have id as string that is why +
     const id = "" + counter;
     counter ++;
@@ -43,15 +44,28 @@ function getAllPlayers(){
     return Array.from(players.values());
 }
 
+function getRandomPlayer() {
+    let index = Math.floor(Math.random()*players.size);
+    return players.get(index + "");
+}
+
+//One loot box has loot set of two players
+//It is just number I felt fit good considering small size of database
 function getLootBoxes(numberOfBoxes) {
     let lootBoxes = [];
     for(let i = 0; i < numberOfBoxes; i++){
-        lootBoxes.push(players.get(Math.random()*players.size));
-        lootBoxes.push(players.get(Math.random()*players.size));
+
+        lootBoxes.push(getLootSet());
     }
     return lootBoxes;
 }
 
+function getLootSet(){
+    let lootSet = [];
+    lootSet.push(getRandomPlayer());
+    lootSet.push(getRandomPlayer());
+    return lootSet;
+}
 module.exports = {
-    getLootBoxes,defaultCollectionInitializer, getAllPlayers
+    getRandomPlayer,getLootBoxes, getAllPlayers, getLootSet
 };

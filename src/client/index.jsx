@@ -6,11 +6,14 @@ import ReactDOM from "react-dom"
 import {BrowserRouter, Switch, Route} from "react-router-dom"
 import React from "react"
 
-import {Navigation} from "./navigation";
+import Navigation from "./navigation";
 import {GameDescription} from "./game-description";
 import Home from "./home";
 import Login from "./login";
 import SignUp from "./signup";
+import LootBoxes from "./loot-boxes";
+import Stats from "./stats";
+import Shop from "./shop";
 
 class App extends React.Component {
     constructor(props) {
@@ -65,11 +68,11 @@ class App extends React.Component {
     };
 
     render() {
-        const id = this.state.user ? this.state.user.id : null;
         return (
             <BrowserRouter>
                 <Navigation
-                    userId={id}
+                    user={this.state.user}
+                    fetchAndUpdateUserInfo={this.fetchAndUpdateUserInfo}
                     updateLoggedInUser={this.updateLoggedInUser}
                 />
                 <div>
@@ -78,7 +81,15 @@ class App extends React.Component {
                         <Route exact path="/" render={props =>
                             <Home {...props}
                                   user={this.state.user}
+                                  updateLoggedInUser={this.updateLoggedInUser}
                                   fetchAndUpdateUserInfo={this.fetchAndUpdateUserInfo}
+                            />
+                        }/>
+                        <Route exact path="/loot" render={props =>
+                            <LootBoxes {...props}
+                                       fetchAndUpdateUserInfo={this.fetchAndUpdateUserInfo}
+                                       updateLoggedInUser={this.updateLoggedInUser}
+                                       user={this.state.user}
                             />
                         }/>
                         <Route exact path={"/login"} render={props =>
@@ -86,9 +97,22 @@ class App extends React.Component {
                                    fetchAndUpdateUserInfo={this.fetchAndUpdateUserInfo}
                             />
                         }/>
+                        <Route exact path={"/shop"} render={props =>
+                            <Shop {...props}
+                                  user={this.state.user}
+
+                                  fetchAndUpdateUserInfo={this.fetchAndUpdateUserInfo}
+                            />
+                        }/>
+                        <Route exact path={"/stats"} render={props =>
+                            <Stats {...props}
+                                   user={this.state.user}
+                                   fetchAndUpdateUserInfo={this.fetchAndUpdateUserInfo}
+                            />
+                        }/>
                         <Route exact path={"/signup"} render={props =>
                             <SignUp {...props}
-                                   fetchAndUpdateUserInfo={this.fetchAndUpdateUserInfo}
+                                    fetchAndUpdateUserInfo={this.fetchAndUpdateUserInfo}
                             />
                         }/>
                         <Route exact path={"/description"} render={props =>

@@ -1,5 +1,5 @@
 import React from "react"
-import {Link, withRouter} from "react-router-dom";
+import {withRouter} from "react-router-dom";
 
 /**
  * This file is copy/adaptation of https://github.com/arcuri82/web_development_and_api_design/blob/master/exercise-solutions/quiz-game/part-10/src/client/login.jsx
@@ -60,7 +60,7 @@ export class Login extends React.Component {
 
         this.setState({error: null});
         await this.props.fetchAndUpdateUserInfo();
-        this.setState({message:"Login successful"});
+        this.setState({message: "Login successful"});
         this.props.history.push("/");
     };
 
@@ -73,29 +73,25 @@ export class Login extends React.Component {
                 </div>
         }
         return (
-            <div className={"center"}>
+            <div className={"registrationForm"}>
                 {this.state.message && <p>{this.state.message}</p>}
-                <div>
-                    <p>User id:</p>
+                <label>User id
                     <input
                         id={"idInput"}
                         type="text"
                         onChange={this.onUserIdChang}
                         value={this.state.userId}
-                    />
-                </div>
-                <div>
-                    <p>Password:</p>
+                    /></label>
+                <label>Password:
                     <input
                         id={"passwordInput"}
                         type="password"
                         onChange={this.onPasswordChange}
                         value={this.state.password}
-                    />
-                </div>
+                    /></label>
                 {error}
 
-                <button id={"loginBtn"} className={"btn btn-outline-dark m-3"}  onClick={this.tryToLogin}>Log in</button>
+                <button id={"loginBtn"} className={"btn btn-outline-dark m-3"} onClick={this.tryToLogin}>Log in</button>
             </div>
         );
     }

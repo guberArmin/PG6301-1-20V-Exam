@@ -8,12 +8,11 @@ const session = require("express-session");
 const LocalStrategy = require('passport-local').Strategy;
 
 const users = require("./db/users");
-const players = require("./db/players-collection");
 const playersApi = require("./routes/players-api");
-const authApi = require("./routes/auth-api");
-
+const authApi = require("./routes/users-api");
 app.use(bodyParser.json());
-players.defaultCollectionInitializer();
+
+const WsHandler = require('./ws/ws-handler');
 
 //Login system
 app.use(session({
@@ -23,6 +22,8 @@ app.use(session({
 }));
 
 app.use(express.static('public'));
+
+WsHandler.init(app);
 
 passport.use(new LocalStrategy(
     {
@@ -63,7 +64,9 @@ app.use(passport.session());
 //End of login system
 
 app.use("/api",playersApi );
-app.use("/api",authApi );
+app.use("/api",authApi);
+//app.use("/api",wsApi.router);
+
 app.use((req, res, next) => {
     res.sendFile(path.resolve(__dirname, '..', '..', 'public', 'index.html'));
 });

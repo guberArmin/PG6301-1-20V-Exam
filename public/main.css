@@ -15,3 +15,50 @@
 body{
     padding:100px;
 }
+
+.logo-image{
+    width:50px;
+    border-radius: 10px;
+    transition: all 0.3s;
+}
+
+.logo-image:hover{
+    opacity: 0.5;
+}
+
+.lootBoxShop {
+    border: solid 3px grey;
+    border-radius: 20px;
+    display: inline-block;
+    padding:40px;
+    position: relative;
+}
+
+.lootBoxShop img{
+    max-width: 300px;
+    max-height: 300px;
+    margin:auto;
+    display:block;
+    padding:30px
+}
+
+.userInfo{
+    margin:15px;
+    background-color: white;
+    color:black;
+    border-radius: 3px;
+    padding:5px;
+}
+
+.buyButton{
+    position:relative !important;
+    right: 30px;
+    bottom:30px;
+}
+
+.registrationForm{
+    padding:30px;
+    display: table-caption;
+    border:solid grey 1px;
+    border-radius: 3px;
+}

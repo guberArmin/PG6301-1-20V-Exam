@@ -1,5 +1,4 @@
 import React from "react"
-import {Link, withRouter} from 'react-router-dom'
 
 //No authentication or authorization needed for this component
 
@@ -24,12 +23,12 @@ export class GameDescription extends React.Component {
             response = await fetch(url, {method: "get"});
             payload = await response.json();
         } catch (e) {
-            this.setState({error: "Failed to connect to server, code " + e})
+            this.setState({error: "Failed to connect to server:" + e});
             return;
         }
 
         if (response.status !== 200) {
-            this.setState({error: "Error connecting to server, code " + e})
+            this.setState({error: "Error connecting to server, code " + response.status})
             return;
         }
 
@@ -49,7 +48,7 @@ export class GameDescription extends React.Component {
 
         return (
             <div style={{display:"inline-block"}}>
-                <h1>All collectiables</h1>
+                <h1>All collectibles</h1>
                 {this.state.players.map((player, index) => {
                     return (<div key={index + "player-card"} className={"alert alert-info"}>
                         <p>{index + 1}.</p>
