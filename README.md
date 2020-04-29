@@ -47,8 +47,8 @@ After installing of dependencies is complected `yarn start` is used to start web
 with server. Website is found at `http://localhost:8080/`
 
 ### Default data
-Up on start, server has 15 players. I felt that 15 is good number for testing
-different scenarios, and adding more would not make much difference
+Up on start, server has 15 football players to collect. I felt that 15 is good number for testing
+different scenarios, and adding more would not make much difference.
 
 ### Default users
 - I provide two users for testing 
@@ -58,7 +58,7 @@ different scenarios, and adding more would not make much difference
    - `user name`: **foo**`password`: **foo** - By default gets 3 random players
   
 ### Requirements
-I have fulfilled all requirements from exam text and added some **extra** 
+I have fulfilled all requirements from exam text and added some **extra**, 
 functionality that is discussed later on.
 
 Code coverage on running `yarn test` is  72.18%
@@ -67,8 +67,9 @@ Code coverage on running `yarn test` is  72.18%
 - To make website prettier and user friendly I have used [bootstrap](https://getbootstrap.com/) css library and added some
 of my custom css
  
-- I have added `eslint` with recommended configuration. Plus some extras I found 
-useful. To configure it I have red documentation from official website of `eslint` and among others
+- I have `eslint` with recommended configuration, with the goal of making code more consistent and avoiding bugs. 
+Plus some extras I found useful.
+To configure it I have red documentation from official website of `eslint` and among others
 used this [stack overflow](https://stackoverflow.com/a/58954380/3532722) topic to make script for eslint execution with `yarn` 
 Therefor I had to edit default `script` configuration, provided to us by teacher. To run eslint type `yarn lint`
 
