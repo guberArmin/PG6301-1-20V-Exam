@@ -65,14 +65,14 @@ Code coverage on running `yarn test` is  72.18% for Stmts, on all files.
 
 ### Extras
 - To make website prettier and user friendly I have used [bootstrap](https://getbootstrap.com/)
- css library that is found at `public/boostrap.min.css`. Also I have added some
+ css library that is found at `/public/boostrap.min.css`. Also I have added some
 of my custom css
  
 - I have `eslint` with recommended configuration (and added some extras I thought would be useful),
  with the goal of making code more consistent and avoiding bugs. 
 To configure it I have red documentation from official website of `eslint` and among others
 used this [stack overflow](https://stackoverflow.com/a/58954380/3532722) topic to make script for eslint execution with `yarn` 
-Therefor I had to edit default `script` configuration, provided to us by teacher. To run `eslint` type `yarn lint`
+Therefor I had to edit default `script` configuration, provided to us by teacher. To run `eslint` type `yarn lint`.
 
 - This website is also deployed to heroku and can be found [here](https://api-design-exam.herokuapp.com/)
 
@@ -81,7 +81,7 @@ As this project has to remain private, for time being, best I could do is to pro
 icon of passing build to this `README.md` (found at beginning of the file) 
 
 - Although it was not required to comment our code I felt it was good idea to do
-it. Both for me while developing website and for examiners to understand
+it. Both for me, while developing website, and for examiners to understand
 my train of thought.
 - Added pictures of all players under `/public/player-pictures`
 
