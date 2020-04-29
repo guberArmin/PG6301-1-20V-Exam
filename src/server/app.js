@@ -52,4 +52,5 @@ app.use("/api",authApi);
 app.use((req, res, next) => {
     res.sendFile(path.resolve(__dirname, '..', '..', 'public', 'index.html'));
 });
+
 module.exports = {app};

@@ -13,6 +13,10 @@ beforeEach(() => {
     deleteAllUsers();
 });
 
+afterAll(async () => {
+    await new Promise(resolve => setTimeout(() => resolve(), 10000)); // avoid jest open handle error
+});
+
 async function signup(userId, password) {
     const response = await fetch("/api/signup", {
         method: "post",

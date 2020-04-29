@@ -1,3 +1,7 @@
+# About
+
+This is website that is implementing [gotcha game](https://en.wikipedia.org/wiki/Gacha_game)
+where you collect football players.
 
 My virutal currency geons
 

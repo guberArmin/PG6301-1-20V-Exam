@@ -8,9 +8,9 @@ let ews;
  * Following code is adaptation of: https://github.com/arcuri82/web_development_and_api_design/tree/master/les10/connect4-v2/src/server/ws
  */
 function init(app) {
-    //Every minute send loot box to use
+    //Every 30 seconds send loot box to use
     //User can hold maximum of 99 loot boxes, so that they don't farm loot boxes by staying online
-    setInterval(() => sendLootBoxesToOnlineUsers(),30000);
+    setTimeout(() => sendLootBoxesToOnlineUsers(),30000);
     ews = express_ws(app);
     app.ws('/', function (socket, req) {
         console.log('Established a new WS connection');
