@@ -81,9 +81,14 @@ As this project has to remain private, for time being, best I could do is to pro
 icon of passing build to this `README.md` (found at beginning of the file) 
 
 - Although it was not required to comment our code I felt it was good idea to do
-it. Both for me, while developing website, and for examiners to understand
-my train of thought.
+it. Both for me, while developing website,  and for examiners to understand my train of thought.
 - Added pictures of all players under `/public/player-pictures`
+
+### REST API endpoints
+
+All API endpoints are named according to convention. For example `get` on end point 
+`/api/players` returns `array` of players as expected by convention. Other endpoints can be seen
+in `user-api.js` and `players-api.js`
 
 ### Special mentions
 Here I discuss things that might not be 100% clear, when it comes to my implementation, and are required by exam text.
@@ -92,7 +97,7 @@ Here I discuss things that might not be 100% clear, when it comes to my implemen
 and amount of geons
 - In addition to above mentioned technologies, I used technologies from class (such as `nodejs`, `react`, `jest`...),
  but I feel that it would not be useful  to write each and every one of those 
- as they are found also in `package.json` 
+ as they are found also in `package.json` and in code
 
 ### Bugs and challenges
 - Website has no known bugs. I did my best to write tests that are going to prevent mayor bugs.
