@@ -101,7 +101,7 @@ and amount of geons
 
 ### Bugs and challenges
 - Website has no known bugs. I did my best to write tests that are going to prevent mayor bugs.
-- **Long test runtime** - 
+- **Testing and deployent** - 
  On deploying this website to `travis-ci` I got error `Jest did not exit one second after the test run has completed.
 `. Which led to run to be stale and errored at the end. Reason for it was that I use `setTimeout` to wait 30 seconds before sending loot box to all
 users on `/loot` page. This **was not** problem locally on my machine, but to be able to use
