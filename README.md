@@ -32,7 +32,7 @@ in my eyes, there is no sense to sell last player as all are equally rare.
 
 - It was not specified where on website should user receive free loot boxes. 
 I decided to use `/loot` page, where user is opening loot boxes. Box is 
-received every 30 seconds for simpler testing (both for me and examiners). It can happen that 
+received every 30 seconds, for simpler testing  (both for me and examiners) I went with such low amount time. It can happen that 
 user gets box right away on coming to `loot` as server starts counting on first open
 websocket. I felt that it would be just unnecessary strain on servers resources to hold timer
 for each user connected with websocket and send loot boxes individually, that is why all users recive
@@ -42,6 +42,10 @@ loot boxes at same moment.
 First we have to run `yarn install` to install needed dependencies.
 After installing of dependencies is compleated `yarn start` is used to start website 
 with server.
+
+### Default data
+Up on running server it has by default 15 players. I felt that 15 is good number for testing
+different scenarios, and adding more would not make much difference
 
 ### Default users
 - I provide two users for testing 
