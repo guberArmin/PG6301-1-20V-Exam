@@ -93,6 +93,7 @@
     "dev": "concurrently \"yarn watch:client\" \"yarn watch:server\"",
     "start": "node src/server/server.js",
     "test": "jest --coverage",
+    "testO": "jest --detectOpenHandles",
     "watch:client": "webpack --watch --mode development",
     "watch:server": "nodemon src/server/server.js --watch src/server --watch public/bundle.js",
     "lint": "eslint --fix src/"

@@ -5,16 +5,13 @@ const React = require('react');
 const {mount} = require('enzyme');
 const {MemoryRouter} = require('react-router-dom');
 const {app} = require('../../src/server/app');
-const {interval} = require('../../src/server/ws/ws-handler');
 const {LootBoxes} = require('../../src/client/loot-boxes');
 const {deleteAllUsers, getUser} = require('../../src/server/db/users');
 beforeEach(() => {
     deleteAllUsers();
 });
 
-afterAll(() => {
-    clearInterval(interval)
-});
+
 
 async function signup(userId, password) {
     const response = await fetch("/api/signup", {

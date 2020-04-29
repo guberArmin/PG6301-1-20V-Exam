@@ -8,8 +8,7 @@ let ews;
  * Following code is adaptation of: https://github.com/arcuri82/web_development_and_api_design/tree/master/les10/connect4-v2/src/server/ws
  */
 //Every 30 seconds send loot box to user
-const interval = setInterval(() => sendLootBoxesToOnlineUsers(), 30000);
-interval.unref();
+setInterval(() => sendLootBoxesToOnlineUsers(), 30000).unref();
 function init(app) {
 
     ews = express_ws(app);
@@ -93,4 +92,4 @@ function handleLogin(dto, socket) {
     console.log("User '" + userId + "' is now connected with a websocket.");
 }
 
-module.exports = {init, interval};
+module.exports = {init};
