@@ -8,7 +8,6 @@ const {app} = require('../../src/server/app');
 const {interval} = require('../../src/server/ws/ws-handler');
 const {LootBoxes} = require('../../src/client/loot-boxes');
 const {deleteAllUsers, getUser} = require('../../src/server/db/users');
-jest.setTimeout(32000);
 beforeEach(() => {
     deleteAllUsers();
 });
