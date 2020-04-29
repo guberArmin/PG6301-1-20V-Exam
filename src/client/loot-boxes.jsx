@@ -7,6 +7,7 @@ export class LootBoxes extends React.Component {
         this.state = {
             error: null,
             lootBoxesNr: null,
+            newBoxMessage:null,
             lootedPlayers: null
         }
     }
@@ -22,8 +23,13 @@ export class LootBoxes extends React.Component {
         this.socket = new WebSocket(protocol + "//" + window.location.host);
 
         this.socket.onmessage = (event => {
-            const message = JSON.parse(event.data);
-            console.log(message);
+            this.setState({newBoxMessage:"Congratulations you got one free loot box"});
+            //After 5 seconds remove message about new box so that user can see new messages that might come
+            setTimeout(() => {
+                this.setState({
+                    newBoxMessage:null
+                });
+            }, 5000)
             this.props.fetchAndUpdateUserInfo();
             this.getNumberOfLootBoxes();
         });
@@ -150,6 +156,7 @@ export class LootBoxes extends React.Component {
             <div>
                 <p id={"tipParagraph"}><b>Pro tip: staying on this page gets you free loot box every 30 seconds</b></p>
                 <p>You have: <b><label id={"numberOfBoxesLabel"}>{this.state.lootBoxesNr}</label> loot boxes </b></p>
+                {this.state.newBoxMessage && <p className={"alert alert-info"}>{this.state.newBoxMessage}</p>  }
                 {this.state.lootBoxesNr ?
                     <button id={"openBoxBtn"} onClick={this.openLootBox} className={"btn btn-danger"}>Open loot
                         box</button> : ""}

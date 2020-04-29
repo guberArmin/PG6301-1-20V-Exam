@@ -12,17 +12,17 @@
     border-radius: 3px;
 }
 
-body{
-    padding:100px;
+body {
+    padding: 100px;
 }
 
-.logo-image{
-    width:50px;
+.logo-image {
+    width: 50px;
     border-radius: 10px;
     transition: all 0.3s;
 }
 
-.logo-image:hover{
+.logo-image:hover {
     opacity: 0.5;
 }
 
@@ -30,54 +30,56 @@ body{
     border: solid 3px grey;
     border-radius: 20px;
     display: inline-block;
-    padding:40px;
+    padding: 40px;
     position: relative;
 }
 
-.lootBoxShop img{
+.lootBoxShop img {
     max-width: 300px;
     max-height: 300px;
-    margin:auto;
-    display:block;
-    padding:30px
+    margin: auto;
+    display: block;
+    padding: 30px
 }
 
-.userInfo{
-    margin:15px;
+.userInfo {
+    margin: 15px;
     background-color: white;
-    color:black;
+    color: black;
     border-radius: 3px;
-    padding:5px;
+    padding: 5px;
 }
 
-.buyButton{
-    position:relative !important;
+.buyButton {
+    position: relative !important;
     right: 30px;
-    bottom:30px;
+    bottom: 30px;
 }
 
-.registrationForm{
-    padding:30px;
+.registrationForm {
+    padding: 30px;
     display: table-caption;
-    border:solid grey 1px;
+    border: solid grey 1px;
     border-radius: 3px;
 }
 
-#missingHeader, #duplicatesHeader{
-    color:#111111;
+#missingHeader, #duplicatesHeader {
+    color: #111111;
     font-size: 2em;
-    padding:20px;
+    padding: 20px;
 }
 
-.playerPicture{
+.playerPicture {
     border-radius: 30px;
     width: 300px;
 }
-.playerInfo{
+
+.playerInfo {
     text-align: center;
 }
 
-.playerContainer{
+.playerContainer {
     display: inline-block;
     max-width: 400px;
 }
+

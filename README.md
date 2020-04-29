@@ -9,7 +9,7 @@ Sell two loot boxes ( 4 players)  and buy one
 
 ReferenceError: You are trying to `import` a file after the Jest environment has been torn down.
 
-default users
+default users 
 
 all pictures found on google filter free
 
@@ -19,6 +19,17 @@ https://pixabay.com/no/illustrations/tyvegods-boksen-lagre-mystisk-3498166/
 
 a bit bigger because of pictures
 
-ad el lint
+ad eslint
 
-upload to cloud
+navigation is picture
+
+welcome message is in navigation bar    
+
+coverage precentage
+
+Web application is deployed to heroku:
+https://api-design-exam.herokuapp.com/loot
+
+code is commented
+
+to run yarn install and yarn dev or yarn start
