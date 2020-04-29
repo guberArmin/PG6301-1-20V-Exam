@@ -25,7 +25,6 @@ async function signup(userId, password) {
     return response.status === 201;
 }
 
-
 //We should get 2 players from one loot box
 async function waitForPlayersToDisplay(driver) {
     const displayed = await asyncCheckCondition(() => {

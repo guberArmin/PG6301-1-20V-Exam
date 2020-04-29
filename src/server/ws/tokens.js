@@ -2,15 +2,11 @@
  * Following code is adaptation of: https://github.com/arcuri82/web_development_and_api_design/tree/master/les10/connect4-v2/src/server/ws
  * @param app
  */
-
 const crypto = require("crypto");
-
 /*
     Map from random tokens to userId
  */
 const tokens = new Map();
-
-
 const randomId = () => {
     /*
         A byte is composed of 8 bits.
@@ -23,37 +19,24 @@ const randomId = () => {
         This means that 10 random bytes can be encoded with a a string of
         length 20 containing only 0-9 and A-F symbols.
      */
-
     return crypto.randomBytes(10).toString('hex');
 };
-
-
 /*
     For a given user, associate a new random token.
  */
 const createToken = (userId) =>{
-
     const t = randomId();
-
     tokens.set(t, userId);
-
     return t;
 };
-
-
 /*
     A token can be used only once.
     If a user needs to re-authenticate a WebSocket,
     a new token needs to be generated.
  */
 const consumeToken = (t) => {
-
     const userId = tokens.get(t);
-
     tokens.delete(t);
-
     return userId;
 };
-
-
 module.exports = {createToken, consumeToken};

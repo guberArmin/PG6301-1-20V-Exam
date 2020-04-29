@@ -6,13 +6,10 @@ const {MemoryRouter} = require('react-router-dom');
 const {overrideFetch, asyncCheckCondition} = require('../mytest-utils');
 const {app} = require('../../src/server/app');
 
-
 const {SignUp} = require('../../src/client/signup');
 const {deleteAllUsers, getUser, createUser} = require('../../src/server/db/users');
 
-
 beforeEach(deleteAllUsers);
-
 
 function fillForm(driver, id, password, confirm){
 
@@ -20,7 +17,6 @@ function fillForm(driver, id, password, confirm){
     const passwordInput = driver.find("#passwordInput").at(0);
     const confirmInput = driver.find("#confirmInput").at(0);
     const signUpBtn = driver.find("#signUpBtn").at(0);
-
 
     userIdInput.simulate('change', {target: {value: id}});
     passwordInput.simulate('change', {target: {value: password}});
@@ -52,7 +48,6 @@ test("Test password mismatch", async () => {
     expect(error).toEqual(true);
 });
 
-
 test("Create user", async () =>{
 
     const userId = "b";
@@ -74,7 +69,6 @@ test("Create user", async () =>{
 
     fillForm(driver, userId, password, password);
 
-
     const redirected = await asyncCheckCondition(
         () => {return page === "/"},
         2000 ,200);
@@ -83,7 +77,6 @@ test("Create user", async () =>{
 
     expect(getUser(userId).id).toEqual(userId);
 });
-
 
 test("Fail if user already exists", async () =>{
 

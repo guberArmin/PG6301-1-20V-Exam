@@ -1,7 +1,6 @@
 const request = require('supertest');
 const {app} = require('../../../src/server/app');
 
-
 test("Try to open loot box when you have no more", async () => {
     const agent = request.agent(app);
 

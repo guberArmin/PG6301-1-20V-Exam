@@ -2,32 +2,26 @@ const express = require('express');
 const passport = require('passport');
 const Users = require("../db/users");
 const Tokens = require('../ws/tokens');
-
 const router = express.Router();
 // Adaptation of :https://github.com/arcuri82/web_development_and_api_design/blob/master/exercise-solutions/quiz-game/part-10/src/server/routes/auth-api.js
 router.post('/login', passport.authenticate('local'), (req, res) => {
     res.status(204).send();
 });
-
 router.post('/logout', function (req, res) {
     req.logout();
     res.status(204).send();
 });
-
 router.get('/user', function (req, res) {
-
     if (!req.user) {
         res.status(401).send();
         return;
     }
-
     res.status(200).json({
         id: req.user.id,
         lootBoxes: req.user.lootBoxes.length,
         geons: req.user.geons
     })
 });
-
 //Get all players owned by currently logged in user
 //Or filter them by missing players
 router.get('/user/players', function (req, res) {
@@ -35,9 +29,7 @@ router.get('/user/players', function (req, res) {
         res.status(401).send();
         return;
     }
-
     const filter = req.query["filter"];
-
     //Get just missing players from collection
     if (filter === "missing") {
         res.status(200).json({
@@ -48,9 +40,7 @@ router.get('/user/players', function (req, res) {
             players: req.user.players,
         })
     }
-
 });
-
 //Delete player from list and add some  geons (money) to user
 router.delete('/user/players/:id', function (req, res) {
     //You have to be logged in to delete player from users list
@@ -58,18 +48,14 @@ router.delete('/user/players/:id', function (req, res) {
         res.status(401).send();
         return;
     }
-
     const isDeleted = Users.sellDuplicate(req.user.id, req.params.id)
-
     if (isDeleted) {
         res.status(204);
     } else {
         res.status(404);
     }
-
     res.send();
 });
-
 //Get all loot boxes owned by user
 router.get('/user/loot', function (req, res) {
     if (!req.user) {
@@ -103,21 +89,16 @@ router.post('/user/loot', function (req, res) {
         return;
     }
     let boxToReturn = Users.openLootBox(req.user.id);
-
     res.status(201).json({
         lootedPlayers: boxToReturn
     })
 });
-
 router.post('/signup', function (req, res) {
-
     const created = Users.createUser(req.body.userId, req.body.password);
-
     if (!created) {
         res.status(400).send();
         return;
     }
-
     passport.authenticate('local')(req, res, () => {
         req.session.save((err) => {
             if (err) {
@@ -129,7 +110,6 @@ router.post('/signup', function (req, res) {
         });
     });
 });
-
 /*
    Adaptation of https://github.com/arcuri82/web_development_and_api_design/blob/master/les10/connect4-v2/src/server/routes/auth-api.js
  */
@@ -138,10 +118,7 @@ router.post('/wstoken', function (req, res) {
         res.status(401).send();
         return;
     }
-
     const t = Tokens.createToken(req.user.id);
     res.status(201).json({wstoken: t});
 });
-
-
 module.exports = router;

@@ -8,9 +8,7 @@ const {app} = require('../../src/server/app');
 const {Login} = require('../../src/client/login');
 const {deleteAllUsers, createUser, i} = require('../../src/server/db/users');
 
-
 beforeEach(deleteAllUsers);
-
 
 function fillForm(driver, id, password){
 
@@ -42,7 +40,6 @@ test("Test fail login", async () => {
 
     expect(error).toEqual(true);
 });
-
 
 test("Test valid login", async () =>{
 

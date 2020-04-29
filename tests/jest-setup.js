@@ -6,7 +6,6 @@ const {configure } = require('enzyme');
 const jsdom = require('jsdom');
 const Adapter = require('enzyme-adapter-react-16');
 
-
 /*
     To be able to use Enzyme with Jest, we need this file, with this
     exact name.
@@ -37,5 +36,4 @@ function copyProps(src, target) {
 }
 
 setUpDomEnvironment('http://localhost:80/');
-
 

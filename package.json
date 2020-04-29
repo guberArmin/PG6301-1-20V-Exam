@@ -16,6 +16,29 @@
       "@babel/react"
     ]
   },
+  "eslintConfig": {
+    "plugins": [
+      "react"
+    ],
+    "extends": "eslint:recommended",
+    "parserOptions": {
+      "ecmaVersion": 9,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    },
+    "env": {
+      "node": true,
+      "es6": true
+    },
+    "rules": {
+      "no-console": 0,
+      "no-unused-vars": 1,
+      "no-multiple-empty-lines": [1,{ "max": 1, "maxEOF": 1 }],
+      "no-duplicate-imports": 1
+    }
+  },
   "dependencies": {
     "express": "4.17.1",
     "express-session": "1.17.0",
@@ -33,14 +56,12 @@
     "@babel/plugin-proposal-class-properties": "7.7.4",
     "@babel/preset-env": "7.7.4",
     "@babel/preset-react": "7.7.4",
-    "babel-eslint": "^10.1.0",
     "babel-jest": "24.9.0",
     "babel-loader": "8.0.6",
     "concurrently": "5.0.0",
     "enzyme": "3.10.0",
     "enzyme-adapter-react-16": "1.15.1",
     "eslint": "^6.8.0",
-    "eslint-plugin-react": "^7.19.0",
     "jest": "24.9.0",
     "jsdom": "15.2.1",
     "nodemon": "2.0.1",
@@ -74,7 +95,7 @@
     "test": "jest --coverage",
     "watch:client": "webpack --watch --mode development",
     "watch:server": "nodemon src/server/server.js --watch src/server --watch public/bundle.js",
-    "lint": "eslint"
+    "lint": "eslint --fix src/"
   },
   "version": "1.0.0"
 }

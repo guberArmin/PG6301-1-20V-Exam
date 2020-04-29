@@ -4,7 +4,6 @@
  */
 const request = require('supertest');
 
-
 /*
     Here, we stub away the calls to "fetch", as not available in NodeJS (ie, they
     are specific to the browser, like alert()).
@@ -129,8 +128,4 @@ export function recursiveTimeoutCheck(predicate, totalTimeMS, intervalMS, start,
 export function flushPromises() {
     return new Promise(resolve => setImmediate(resolve));
 }
-
-
-
-
 

@@ -18,7 +18,6 @@ beforeEach(() => {
     defaultUsersInitialization();
 });
 
-
 async function getAllPlayersServer() {
     let response;
     try {
@@ -43,7 +42,6 @@ async function login(userId, password) {
 
     return response.status === 204;
 }
-
 
 async function waitForDuplicatesToDisplay(driver) {
     const displayed = await asyncCheckCondition(() => {
@@ -137,7 +135,6 @@ test("Test show missing ones", async () => {
     const missing = getAllPlayers().length - (allPlayers.length - counter);
     expect(numberOfDisplayedPlayers).toEqual(missing);
 });
-
 
 //Again user bar user as it has minimum of 1 duplicate
 test("Test sell duplicate card", async () => {

@@ -17,7 +17,6 @@ test("Try to buy loot box without logging in", async () => {
     expect(response.statusCode).toBe(401);
 });
 
-
 //Testing /api/players/loot -> put
 //Although at the moment not used as endpoint in front end we might use it in future
 //That is why we are goint to test it

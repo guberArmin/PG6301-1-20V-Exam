@@ -25,7 +25,6 @@ async function signup(userId, password) {
     return response.status === 201;
 }
 
-
 async function waitForFailureMessage(driver) {
     const displayed = await asyncCheckCondition(() => {
         driver.update();

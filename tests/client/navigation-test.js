@@ -7,7 +7,6 @@ const {app} = require('../../src/server/app');
 
 const {Navigation} = require('../../src/client/navigation');
 
-
 async function waitForLogOut(driver,id) {
     const displayed = await asyncCheckCondition(() => {
         driver.update();
@@ -15,7 +14,6 @@ async function waitForLogOut(driver,id) {
     }, 2000, 200);
     return displayed;
 }
-
 
 test("Test not logged in", () => {
     const fetchAndUpdateUserInfo = () => new Promise(resolve => resolve());

@@ -9,7 +9,6 @@ const {Home} = require('../../src/client/home');
 const {deleteAllUsers} = require('../../src/server/db/users');
 const {checkForDuplicates} = require("../../src/client/utils.js");
 
-
 beforeEach(() => {
     deleteAllUsers();
 });

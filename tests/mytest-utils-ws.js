@@ -4,7 +4,6 @@
  */
 const WS = require('ws');
 
-
 /*
     A WebSocket connection can take some time to open (e.g., handshake messages).
     So, here we return a Promise which resolves to a boolean, specifying whether
@@ -54,7 +53,6 @@ export function checkConnectedWS(ws, timeoutMs){
         });
 }
 
-
 export class WsStub extends WS{
 
     constructor(url){
@@ -98,7 +96,6 @@ export class WsStub extends WS{
         // this.send() does not need to be changed, as same signature
     }
 }
-
 
 export function overrideWebSocket(){
     global.WebSocket = WsStub;

@@ -33,3 +33,8 @@ https://api-design-exam.herokuapp.com/loot
 code is commented
 
 to run yarn install and yarn dev or yarn start
+https://github.com/olaven/exam-PG6300/blob/master/.eslintrc.js
+https://stackoverflow.com/a/58954380/3532722
+
+travis
+https://docs.travis-ci.com/user/languages/javascript-with-nodejs/
