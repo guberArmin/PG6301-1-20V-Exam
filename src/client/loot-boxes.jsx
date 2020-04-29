@@ -13,14 +13,12 @@ export class LootBoxes extends React.Component {
 
     componentDidMount() {
         this.getNumberOfLootBoxes();
-        this.socket = new WebSocket("ws://" + window.location.host);
 
         //Needed for uploading on heroku as it uses https and local host is http
         let protocol = "ws:";
         if (window.location.protocol.toLowerCase() === "https:") {
             protocol = "wss:";
         }
-        console.log(window.location.protocol);
         this.socket = new WebSocket(protocol + "//" + window.location.host);
 
         this.socket.onmessage = (event => {
