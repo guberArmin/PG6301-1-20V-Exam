@@ -63,7 +63,7 @@ async function openLootBox () {
     return response.status === 201;
 }
 
-test("Test not logged in", async () => {
+test("Test when not logged in, can you see collection of players", async () => {
     overrideFetch(app);
     let page = null;
     const history = {push: (h) => {page=h}};
@@ -74,11 +74,11 @@ test("Test not logged in", async () => {
             <Home history={history} updateLoggedInUser={updateLoggedInUser} fetchAndUpdateUserInfo={fetchAndUpdateUserInfo}/>
         </MemoryRouter>);
 
-    const noUserError = driver.find(".no-user").length > 0;
-    expect(noUserError).toBe(true)
+    const error = driver.find(".no-user").length > 0;
+    expect(error).toBe(true)
 });
 
-test("Test unique players displayed", async () => {
+test("Test are unique players displayed", async () => {
     overrideFetch(app);
     let id = "admin";
 
@@ -88,6 +88,7 @@ test("Test unique players displayed", async () => {
     await openLootBox();
     await openLootBox();
     await openLootBox();
+
     //Get all players that we own anc check how many of them are unique(e.g. not duplicates)
     let owned = await getUsersCollection();
     const numberOfUnique = Object.keys(checkForDuplicates(owned)).length;
@@ -98,10 +99,11 @@ test("Test unique players displayed", async () => {
         <MemoryRouter>
             <Home  user={"admin"} updateLoggedInUser={updateLoggedInUser}fetchAndUpdateUserInfo={fetchAndUpdateUserInfo}/>
         </MemoryRouter>);
+
     //Wait for players to be displayed and test values
     const playersDisplayed = await waitForPlayersToDisplay(driver);
     expect(playersDisplayed).toBe(true);
-    const numberOfUniquePlayersDisplayed = driver.find(".single-player").length;
+    const numberOfUniquePlayersDisplayed = driver.find(".playerInfo").length;
     expect(numberOfUniquePlayersDisplayed).toEqual(numberOfUnique);
 
 });

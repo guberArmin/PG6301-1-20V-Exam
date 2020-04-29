@@ -62,3 +62,22 @@ body{
     border:solid grey 1px;
     border-radius: 3px;
 }
+
+#missingHeader, #duplicatesHeader{
+    color:#111111;
+    font-size: 2em;
+    padding:20px;
+}
+
+.playerPicture{
+    border-radius: 30px;
+    width: 300px;
+}
+.playerInfo{
+    text-align: center;
+}
+
+.playerContainer{
+    display: inline-block;
+    max-width: 400px;
+}

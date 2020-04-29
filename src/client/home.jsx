@@ -80,23 +80,26 @@ export class Home extends React.Component {
             <div>
                 <div className={"lootBoxes"}>
                     You have: <b>{this.props.user.lootBoxes} loot boxes </b>
-                    <a href={"/loot"}>Click here to open them</a>
+                    <Link to={"/loot"}>Click here to open them</Link>
                 </div>
-                <div className={"userCollection"}>
+                <div className={"userCollection playerContainer"}>
                     <h3>You own following players: </h3>
                     {this.state.players.map((player, index) => {
                         //If we did not display it show it else just skip it
                         if (!duplicates[player.id].displayed) {
                             counter++;
                             duplicates[player.id].displayed = true;
-                            return (<div key={index + "player-card"} className={"alert alert-info single-player"}>
-                                <p>{counter}.</p>
-                                <p>Name: {player.name}</p>
-                                <p>Last name: {player.lastName}</p>
-                                <p>Nationality: {player.nationality}</p>
-                                <p>Team: {player.team}</p>
-                                <p>Age: {player.age}</p>
-                                <p>Number of copies owned: {duplicates[player.id].numberOfCopies}</p>
+                            return (<div key={index + "player-card"} className={"alert alert-info player-card"}>
+                                <div className={"playerInfo"}>
+                                    <p>{counter}.</p>
+                                    <p>Name: <b>{player.name}</b></p>
+                                    <p>Last name:<b> {player.lastName}</b></p>
+                                    <p>Nationality:<b> {player.nationality}</b></p>
+                                    <p>Team: <b>{player.team}</b></p>
+                                    <p>Age: <b>{player.age}</b></p>
+                                    <p>Number of copies owned: {duplicates[player.id].numberOfCopies}</p>
+                                </div>
+                                <img className={"playerPicture"} src={player.picture ? player.picture : ""}/>
                                 <br/>
                             </div>);
                         }

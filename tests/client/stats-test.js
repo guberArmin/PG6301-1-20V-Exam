@@ -70,34 +70,17 @@ async function waitForMissingToDisplay(driver) {
     return displayed;
 }
 
-async function getUsersCollection() {
-    let response;
-    let payload;
-
-    try {
-        response = await fetch("/api/user/players", {method: "get"});
-    } catch (e) {
-        this.setState({error: "Failed to connect to server:" + e});
-        return;
-    }
-    payload = await response.json();
-    //If we are here we have gotten response, lets set it
-    return payload.players;
-}
-
-async function openLootBox() {
-    const url = "/api/user/loot";
-    let response;
-    let payload;
-    try {
-        //As server state changes we have to use POST and not GET
-        response = await fetch(url, {method: "post"});
-    } catch (e) {
-        this.setState({error: "Failed to connect to server:" + e});
-        return;
-    }
-    return response.status === 201;
-}
+test("Test not logged inn", async () => {
+    overrideFetch(app);
+    //Default user id: bar password: bar
+    const fetchAndUpdateUserInfo = () => new Promise(resolve => resolve());
+    const driver = mount(
+        <MemoryRouter>
+            <Stats fetchAndUpdateUserInfo={fetchAndUpdateUserInfo}/>
+        </MemoryRouter>);
+    let isNotLoggedIn = driver.find("#notLoggedInDiv").length > 0;
+    expect(isNotLoggedIn).toEqual(true);
+});
 
 test("Test show duplicates", async () => {
     overrideFetch(app);

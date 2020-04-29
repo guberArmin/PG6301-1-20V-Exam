@@ -60,7 +60,7 @@ class App extends React.Component {
     notFound() {
         return (
             <div>
-                <p className={"alert alert-warning"}>
+                <p className={"alert alert-danger"}>
                     Page not found, double check you url!
                 </p>
             </div>

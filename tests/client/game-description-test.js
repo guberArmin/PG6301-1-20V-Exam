@@ -2,7 +2,6 @@ import {asyncCheckCondition, overrideFetch} from "../mytest-utils";
 
 const React = require('react');
 const {mount} = require('enzyme');
-const {MemoryRouter} = require('react-router-dom');
 const {app} = require('../../src/server/app');
 
 const {GameDescription} = require('../../src/client/game-description');
@@ -16,7 +15,7 @@ async function waitForPlayersToDisplay(driver) {
     return displayed;
 }
 
-test("Test not logged in, if all players displayed", async () => {
+test("Test when not logged in if all players displayed", async () => {
     overrideFetch(app);
     const driver = mount(<GameDescription/>);
     await waitForPlayersToDisplay(driver);

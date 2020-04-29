@@ -20,7 +20,6 @@ async function waitForLogOut(driver,id) {
 test("Test not logged in", () => {
     const fetchAndUpdateUserInfo = () => new Promise(resolve => resolve());
     let page = null;
-    const history = {push: (h) => {page=h}};
     const driver = mount(
         <MemoryRouter >
             <Navigation page = {page} fetchAndUpdateUserInfo={fetchAndUpdateUserInfo}/>

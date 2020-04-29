@@ -35,11 +35,9 @@ export class LootBoxes extends React.Component {
     }
 
 
-    async doLogInWebSocket(userId) {
+    async doLogInWebSocket() {
         const url = "/api/wstoken";
-
         let response;
-
         try {
             response = await fetch(url, {
                 method: "post"
@@ -48,8 +46,6 @@ export class LootBoxes extends React.Component {
             this.setState({errorMsg: "Failed to connect to server: " + err});
             return;
         }
-
-
         if (response.status === 401) {
             //this could happen if the session has expired
             this.setState({errorMsg: "You should log in first"});
@@ -62,9 +58,7 @@ export class LootBoxes extends React.Component {
             return;
         }
 
-        const json = await response.json();
-
-        const payload = json;
+        const payload = await response.json();
         payload.topic = 'login';
 
         this.socket.send(JSON.stringify(payload));
@@ -111,8 +105,8 @@ export class LootBoxes extends React.Component {
         const url = "/api/user/loot";
         let response;
         let payload;
-        if(!this.state.lootBoxesNr)
-            return ;
+        if (!this.state.lootBoxesNr)
+            return;
         try {
             //As server state changes we have to use POST and not GET
             response = await fetch(url, {method: "post"});
@@ -151,26 +145,30 @@ export class LootBoxes extends React.Component {
                 </div>
             )
         }
-
-        if(!this.state.lootBoxesNr )
+        if (this.state.lootBoxesNr === null || this.state.lootBoxesNr === undefined)
             return <p className={"alert alert-warning"}>Loading...</p>
         return (
             <div>
                 <p id={"tipParagraph"}><b>Pro tip: staying on this page gets you free loot box every 30 seconds</b></p>
                 <p>You have: <b><label id={"numberOfBoxesLabel"}>{this.state.lootBoxesNr}</label> loot boxes </b></p>
-                {this.state.lootBoxesNr?<button id={"openBoxBtn"} onClick={this.openLootBox} className={"btn btn-danger"}>Open loot box</button>:""}
+                {this.state.lootBoxesNr ?
+                    <button id={"openBoxBtn"} onClick={this.openLootBox} className={"btn btn-danger"}>Open loot
+                        box</button> : ""}
                 {this.state.lootedPlayers &&
                 <div>
-                    {<div className={"userCollection"}>
+                    {<div className={"playerContainer"}>
                         <h3>You got following players from loot box: </h3>
                         {this.state.lootedPlayers.map((player, index) => {
                             return (<div key={index + "player-card"} className={"alert alert-info player-card"}>
-                                <p>{index + 1}.</p>
-                                <p>Name: {player.name}</p>
-                                <p>Last name: {player.lastName}</p>
-                                <p>Nationality: {player.nationality}</p>
-                                <p>Team: {player.team}</p>
-                                <p>Age: {player.age}</p>
+                                <div className={"playerInfo"}>
+                                    <p>{index + 1}.</p>
+                                    <p>Name: <b>{player.name}</b></p>
+                                    <p>Last name:<b> {player.lastName}</b></p>
+                                    <p>Nationality:<b> {player.nationality}</b></p>
+                                    <p>Team: <b>{player.team}</b></p>
+                                    <p>Age: <b>{player.age}</b></p>
+                                </div>
+                                <img className={"playerPicture"} src={player.picture ? player.picture : ""}/>
                                 <br/>
                             </div>);
                         })}

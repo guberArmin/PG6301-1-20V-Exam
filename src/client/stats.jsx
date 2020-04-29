@@ -32,7 +32,10 @@ export class Stats extends React.Component {
             this.setState({error: "Failed to connect to server:" + e});
             return;
         }
-
+        if (response.status === 401) {
+            //I have custom error for such situations so no handling it here
+            return;
+        }
         if (response.status !== 200) {
             this.setState({error: "Failed getting data: " + response.status});
             return;
@@ -56,6 +59,11 @@ export class Stats extends React.Component {
             this.setState({error: "Failed to connect to server:" + e});
             return;
         }
+        if (response.status === 401) {
+            //I have custom error for such situations so no handling it here
+            return;
+        }
+
 
         if (response.status !== 200) {
             this.setState({error: "Failed getting data: " + response.status});
@@ -95,11 +103,6 @@ export class Stats extends React.Component {
             return;
         }
 
-        if (response.status === 401) {
-            //I have custom error for such situations so no handling it here
-            return;
-        }
-
         if (response.status !== 204) {
             this.setState({error: "Failed getting data: " + response.status});
             return;
@@ -116,14 +119,9 @@ export class Stats extends React.Component {
             return <p className={"alert alert-danger"}>Error : {this.state.error}</p>;
         }
 
-        if (!this.state.missing && !this.state.owned) {
-            return <p className={"alert alert-warning"}>Loading</p>
-
-        }
-
         if (!this.props.user) {
             return (
-                <div>
+                <div id={"notLoggedInDiv"}>
                     <p className={"alert alert-warning"}>To see your collection you have to
                         <Link role="button" to={"/login"}> login </Link> or you can <Link
                             role="button" to={"/description"}> view all collectibles </Link></p>
@@ -131,28 +129,38 @@ export class Stats extends React.Component {
             )
         }
 
+        if (!this.state.missing && !this.state.owned) {
+            return <p className={"alert alert-warning"}>Loading</p>
+
+        }
+
+
         if (!this.state.owned) {
-            return <p className={"alert alert-warning"}>You own no players, go and open some <a href={"/login"}>loot
-                boxes</a></p>
+            return <p className={"alert alert-warning"}>You own no players, go and open some <Link to={"/login"}>loot
+                boxes</Link></p>
         }
 
 
         if (this.state.showMissing) {
             return (
-                <div>
+                <div className={"playerContainer"}>
                     <button id={"showDuplicatesBtn"} className={"btn btn-info"}
                             onClick={this.buttonController}>{this.state.buttonText}</button>
-                    <h3 id={"missingHeader"}>You are missing: {this.state.missing.length} cards;
+                    <h3 id={"missingHeader"}>You are missing: {this.state.missing.length} cards
                     </h3>
                     {this.state.missing.map((player, index) => {
-                        return (<div key={index + "player-card"} className={"alert player-card alert-info"}>
-                            <p>Name: {player.name}</p>
-                            <p>Last name: {player.lastName}</p>
-                            <p>Nationality: {player.nationality}</p>
-                            <p>Team: {player.team}</p>
-                            <p>Age: {player.age}</p>
+                        return (<div key={index + "player-card"} className={"alert alert-info player-card"}>
+                            <div className={"playerInfo"}>
+                                <p>Name: <b>{player.name}</b></p>
+                                <p>Last name:<b> {player.lastName}</b></p>
+                                <p>Nationality:<b> {player.nationality}</b></p>
+                                <p>Team: <b>{player.team}</b></p>
+                                <p>Age: <b>{player.age}</b></p>
+                            </div>
+                            <img className={"playerPicture"} src={player.picture ? player.picture : ""}/>
                             <br/>
                         </div>);
+
                     })}
 
                 </div>
@@ -166,7 +174,7 @@ export class Stats extends React.Component {
             if (p.numberOfCopies > 1) numberOfDuplicates += p.numberOfCopies - 1
         });
         return (
-            <div>
+            <div className={"playerContainer"}>
                 <button id={"showMissingButton"} className={"btn btn-info"}
                         onClick={this.buttonController}>{this.state.buttonText}</button>
                 <h3 id={"duplicatesHeader"}>You have: {numberOfDuplicates} duplicates</h3>
@@ -174,16 +182,19 @@ export class Stats extends React.Component {
                     if (!duplicates[player.id].displayed && duplicates[player.id].numberOfCopies > 1) {
                         duplicates[player.id].displayed = true;
                         return (<div key={index + "player-card"} className={"alert alert-info player-card"}>
-                            <p>Name: {player.name}</p>
-                            <p>Last name: {player.lastName}</p>
-                            <p>Nationality: {player.nationality}</p>
-                            <p>Team: {player.team}</p>
-                            <p>Age: {player.age}</p>
-                            <p>Number of extra copies owned: {duplicates[player.id].numberOfCopies - 1}</p>
-                            <button className={"btn btn-danger duplicate-button"} onClick={() => {
-                                this.sellDuplicate(player.id)
-                            }}>Sell one duplicate
-                            </button>
+                            <div className={"playerInfo"}>
+                                <p>Name: <b>{player.name}</b></p>
+                                <p>Last name:<b> {player.lastName}</b></p>
+                                <p>Nationality:<b> {player.nationality}</b></p>
+                                <p>Team: <b>{player.team}</b></p>
+                                <p>Age: <b>{player.age}</b></p>
+                                <p>Number of extra copies owned: <b>{duplicates[player.id].numberOfCopies - 1}</b></p>
+                                <button className={"btn btn-danger duplicate-button m-3"} onClick={() => {
+                                    this.sellDuplicate(player.id)
+                                }}>Sell one duplicate
+                                </button>
+                            </div>
+                            <img className={"playerPicture"} src={player.picture ? player.picture : ""}/>
                             <br/>
                         </div>);
                     }

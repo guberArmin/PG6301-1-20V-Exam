@@ -38,7 +38,7 @@ export class GameDescription extends React.Component {
 
     render() {
         if (this.state.error) {
-            return <p className={"alert alert-danger"}>Error : {this.state.error}</p>;
+            return <p id={"failureParagraph"} className={"alert alert-danger"}>Error : {this.state.error}</p>;
         }
 
         //If players are not yet fetched from server
@@ -47,16 +47,19 @@ export class GameDescription extends React.Component {
         }
 
         return (
-            <div style={{display:"inline-block"}}>
+            <div className={"playerContainer"}>
                 <h1>All collectibles</h1>
                 {this.state.players.map((player, index) => {
                     return (<div key={index + "player-card"} className={"alert alert-info player-card"}>
-                        <p>{index + 1}.</p>
-                        <p>Name: {player.name}</p>
-                        <p>Last name: {player.lastName}</p>
-                        <p>Nationality: {player.nationality}</p>
-                        <p>Team: {player.team}</p>
-                        <p>Age: {player.age}</p>
+                        <div className={"playerInfo"}>
+                            <p>{index + 1}</p>
+                            <p>Name: <b>{player.name}</b></p>
+                            <p>Last name:<b> {player.lastName}</b></p>
+                            <p>Nationality:<b> {player.nationality}</b></p>
+                            <p>Team: <b>{player.team}</b></p>
+                            <p>Age: <b>{player.age}</b></p>
+                        </div>
+                        <img className={"playerPicture"} src={player.picture ? player.picture : ""}/>
                         <br/>
                     </div>);
                 })}

@@ -9,7 +9,7 @@ const LocalStrategy = require('passport-local').Strategy;
 
 const users = require("./db/users");
 const playersApi = require("./routes/players-api");
-const authApi = require("./routes/users-api");
+const authApi = require("./routes/user-api");
 app.use(bodyParser.json());
 
 const WsHandler = require('./ws/ws-handler');

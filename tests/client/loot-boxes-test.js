@@ -44,36 +44,7 @@ async function waitForTipToDisplay(driver) {
     return displayed;
 }
 
-async function getUsersCollection() {
-    let response;
-    let payload;
-
-    try {
-        response = await fetch("/api/user/players", {method: "get"});
-    } catch (e) {
-        this.setState({error: "Failed to connect to server:" + e});
-        return;
-    }
-    payload = await response.json();
-    //If we are here we have gotten response, lets set it
-    return payload.players;
-}
-
-async function openLootBox() {
-    const url = "/api/user/loot";
-    let response;
-    let payload;
-    try {
-        //As server state changes we have to use POST and not GET
-        response = await fetch(url, {method: "post"});
-    } catch (e) {
-        this.setState({error: "Failed to connect to server:" + e});
-        return;
-    }
-    return response.status === 201;
-}
-
-test("Test not logged in", async () => {
+test("Test accessing loot box page when not logged in", async () => {
     overrideFetch(app);
     overrideWebSocket(app);
     let page = null;
@@ -94,7 +65,7 @@ test("Test not logged in", async () => {
     expect(noUserError).toBe(true)
 });
 
-test("Test unique players displayed", async () => {
+test("Test if players are displayed on opening loot box", async () => {
     overrideFetch(app);
     overrideWebSocket(app);
     let id = "admin";
@@ -119,13 +90,11 @@ test("Test unique players displayed", async () => {
 
     const isDisplayed =  await waitForTipToDisplay(driver);
     expect(isDisplayed).toBe(true);
-    //Every new user gets 3 loot boxes lets open them one by one
+    //Every new user gets 3 loot boxes lets open one
     const openButton = driver.find("#openBoxBtn");
     openButton.simulate("click");
     //Wait for players to be displayed and test values
     const playersDisplayed = await waitForPlayersToDisplay(driver);
     expect(playersDisplayed).toBe(true);
-    const oldNumberOfBoxes = driver.find("#numberOfBoxesLabel");
-
 });
 

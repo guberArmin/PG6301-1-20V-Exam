@@ -15,14 +15,9 @@ router.post("/players/loot", (req, res) => {
         return;
     }
     //If we have no money we can not buy loot box
-    /**
-     * rfc7231 definition: The 403 (Forbidden) status code indicates that the server understood
-     * the request but refuses to authorize it.  A server that wishes to
-     * make public why the request has been forbidden can describe that
-     * reason in the response payload (if any).
-     */
+    //I have choose to go for 404 based on this stack overflow discussion: https://stackoverflow.com/questions/11746894/what-is-the-proper-rest-response-code-for-a-valid-request-but-an-empty-data
     if (req.user.geons < 200) {
-        res.status(403).send();
+        res.status(404).send();
         return;
     }
     Users.buyLootBox(req.user.id, players.getLootSet());
@@ -43,6 +38,6 @@ router.put("/players/loot", (req, res) => {
     if (isRerolled)
         res.status(201).send();
     else //You have no loot boxes to re roll
-        res.status(403).send();
+        res.status(404).send();
 });
 module.exports = router;
