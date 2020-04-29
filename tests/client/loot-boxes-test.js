@@ -5,17 +5,18 @@ const React = require('react');
 const {mount} = require('enzyme');
 const {MemoryRouter} = require('react-router-dom');
 const {app} = require('../../src/server/app');
-
+const {interval} = require('../../src/server/ws/ws-handler');
 const {LootBoxes} = require('../../src/client/loot-boxes');
-const {deleteAllUsers ,getUser} = require('../../src/server/db/users');
+const {deleteAllUsers, getUser} = require('../../src/server/db/users');
 jest.setTimeout(32000);
 beforeEach(() => {
     deleteAllUsers();
 });
 
-afterAll(async () => {
-    await new Promise(resolve => setTimeout(() => resolve(), 31000)); // avoid jest open handle error
+afterAll(() => {
+    clearInterval(interval)
 });
+
 async function signup(userId, password) {
     const response = await fetch("/api/signup", {
         method: "post",
@@ -88,7 +89,7 @@ test("Test if players are displayed on opening loot box", async () => {
                        fetchAndUpdateUserInfo={fetchAndUpdateUserInfo}/>
         </MemoryRouter>);
 
-    const isDisplayed =  await waitForTipToDisplay(driver);
+    const isDisplayed = await waitForTipToDisplay(driver);
     expect(isDisplayed).toBe(true);
     //Every new user gets 3 loot boxes lets open one
     const openButton = driver.find("#openBoxBtn");

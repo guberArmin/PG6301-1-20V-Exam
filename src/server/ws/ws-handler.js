@@ -7,9 +7,11 @@ let ews;
 /**
  * Following code is adaptation of: https://github.com/arcuri82/web_development_and_api_design/tree/master/les10/connect4-v2/src/server/ws
  */
+//Every 30 seconds send loot box to user
+const interval = setInterval(() => sendLootBoxesToOnlineUsers(), 30000);
+
 function init(app) {
-    //Every 30 seconds send loot box to use
-    setTimeout(() => sendLootBoxesToOnlineUsers(),30000);
+
     ews = express_ws(app);
     app.ws('/', function (socket, req) {
         console.log('Established a new WS connection');
@@ -44,16 +46,18 @@ function init(app) {
         });
     });
 }
+
 function sendLootBoxesToOnlineUsers() {
     ActivePlayers.userToSocket.forEach(
         s => {
             let randomBox = players.getLootSet();
             const userID = ActivePlayers.getUser(s.id);
-            Users.addLootSetToUser(userID,randomBox);
+            Users.addLootSetToUser(userID, randomBox);
             s.send(JSON.stringify("You have received loot box"));
         }
     )
 }
+
 /*
    WebSockets do not have a native concept of authentication.
    As first WS message is over HTTP, we could re-use the same session cookies,
@@ -88,4 +92,5 @@ function handleLogin(dto, socket) {
     ActivePlayers.registerSocket(socket, userId);
     console.log("User '" + userId + "' is now connected with a websocket.");
 }
-module.exports = {init};
+
+module.exports = {init, interval};
