@@ -49,36 +49,42 @@ with server.
 I have fulfilled all requirements from exam text and added some **extra** 
 functionality that is discussed later on.
 
-Code coverage on running `yarn test` is  
+Code coverage on running `yarn test` is  72.18%
 
 ####Extras
+- To make website prettier and user friendly I have used [bootstrap](https://getbootstrap.com/) css library and added some
+of my custom css
+ 
 - I have added `eslint` with recommended configuration. Plus some extras I found 
-useful.
+useful. To configure it I have red documentation from official website of `eslint` and among others
+used this [stack overflow](https://stackoverflow.com/a/58954380/3532722) topic to make script for eslint execution with `yarn` 
+Therefor I had to edit default `script` configuration, provided to us by teacher. To run eslint type `yarn lint`
 
 - This website is also deployed to heroku and can be found [here](https://api-design-exam.herokuapp.com/)
 
 - I have deployed (via `github`) this website to `travis-ci` for continuous integration.
 As this project has to remain private, for time being, best I could do is to provide `travis-ci`
-icon of passing build to this README.md (found at beginning of the file) 
+icon of passing build to this `README.md` (found at beginning of the file) 
 
 - Although it was not required to comment our code I felt it was good idea to do
 it. Both for me while developing website and for examiners to understand
 my train of thought.
 
-####Special mentions 
+####Special mentions
+Here I discuss things that might not be 100% clear, when it comes to my implementation, and are required by exam text.
 - To go back from each page to home page just click on loot box icon in 
 upper left corner
 - On login you get welcome message in navigation bar
 
-
-to run yarn install and yarn dev or yarn start
-https://github.com/olaven/exam-PG6300/blob/master/.eslintrc.js
-https://stackoverflow.com/a/58954380/3532722
-
-
-open handlers error with jest
-https://stackoverflow.com/questions/50818367/how-to-fix-err-jest-has-detected-the-following-3-open-handles-potentially-keepin
-
-
-travis
-https://docs.travis-ci.com/user/languages/javascript-with-nodejs/
+####Bugs and challenges
+- Website has no known bugs. I did my best to write tests that are going to prevent mayor bugs.
+- **Long test runtime** - 
+ On deploying this website to `travis-ci` I got error `Jest did not exit one second after the test run has completed.
+`. Reason for it was that I use `setTimeout` to wait 30 seconds before sending loot box to all
+users on `/loot` page. This **was not** problem locally on my machine, but to be able to use
+continuous integration I had to adjust test for `loot-boxes component` 
+setting `jest.setTimeout(32000)` and after all tests are done wait for 31 seconds to be sure
+that setTimeout from `ws-handler` is done. This leads to approximately 40 seconds testing on running
+of `yarn test`. I felt that this is not huge problem as we do not perform that operation often.
+Solution for this problem I found [here](https://stackoverflow.com/questions/50818367/how-to-fix-err-jest-has-detected-the-following-3-open-handles-potentially-keepin
+).
