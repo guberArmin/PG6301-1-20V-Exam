@@ -9,7 +9,7 @@ let ews;
  */
 //Every 30 seconds send loot box to user
 const interval = setInterval(() => sendLootBoxesToOnlineUsers(), 30000);
-
+interval.unref();
 function init(app) {
 
     ews = express_ws(app);

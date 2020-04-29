@@ -95,16 +95,21 @@ Here I discuss things that might not be 100% clear, when it comes to my implemen
 - To go back, from any page to home page, just click on loot box icon, in upper left corner
 - On login you get welcome message in navigation bar, in upper right corner, next to number of loot boxes
 and amount of geons
-- In addition to above mentioned ktechnologies, I used technologies from class (such as `nodejs`, `react`, `jest`...),
+- In addition to above mentioned technologies, I used technologies from class (such as `nodejs`, `react`, `jest`...),
  but I feel that it would not be useful  to write each and every one of those 
  as they are found also in `package.json` and in code
 
 ### Bugs and challenges
 - Website has no known bugs. I did my best to write tests that are going to prevent mayor bugs.
-- **Testing and deployent** - 
+- **Long test runtime** - 
  On deploying this website to `travis-ci` I got error `Jest did not exit one second after the test run has completed.
-`. Which led to run to be stale and errored at the end. Reason for it was that I use `setTimeout` to wait 30 seconds before sending loot box to all
+`. Reason for it was that I use `setTimeout` to wait 30 seconds before sending loot box to all
 users on `/loot` page. This **was not** problem locally on my machine, but to be able to use
-continuous integration I had to adjust test to us `clear interval` after all tests have completed execution.
+continuous integration I had to adjust test for `loot-boxes component`.
+I did this by setting `jest.setTimeout(32000)` and after all tests are done wait for 31 seconds (using promise with setTimeout) to be sure
+that setTimeout from `ws-handler` is done. This leads to approximately 40 seconds testing on running
+of `yarn test`. I felt that this is not huge problem as we do not perform that operation often.
+Solution for this problem I found [here](https://stackoverflow.com/questions/50818367/how-to-fix-err-jest-has-detected-the-following-3-open-handles-potentially-keepin
+).
 
 
