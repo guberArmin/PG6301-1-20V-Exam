@@ -35,18 +35,19 @@ I decided to use `/loot` page, where user is opening loot boxes. Box is
 received every 30 seconds. Main reason for such low amount of time is to make  
 testing simpler (both for me and examiners). 
 It can happen that 
-user gets box right away on coming to `loot` as server starts counting on first open
+user gets box right away on coming to `loot`, as server starts counting on first open
 websocket. I felt that it would be just unnecessary strain on servers resources to hold timer
 for each user connected with websocket and send loot boxes individually, that is why all users recive
 loot boxes at the same moment.
 
 ### Running application
 First we have to run `yarn install` to install needed dependencies.
-After installing of dependencies is compleated `yarn start` is used to start website 
+
+After installing of dependencies is complected `yarn start` is used to start website 
 with server.
 
 ### Default data
-Up on running server it has by default 15 players. I felt that 15 is good number for testing
+Up on start, server has 15 players. I felt that 15 is good number for testing
 different scenarios, and adding more would not make much difference
 
 ### Default users
