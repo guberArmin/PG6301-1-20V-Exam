@@ -50,7 +50,7 @@ export class GameDescription extends React.Component {
             <div style={{display:"inline-block"}}>
                 <h1>All collectibles</h1>
                 {this.state.players.map((player, index) => {
-                    return (<div key={index + "player-card"} className={"alert alert-info"}>
+                    return (<div key={index + "player-card"} className={"alert alert-info player-card"}>
                         <p>{index + 1}.</p>
                         <p>Name: {player.name}</p>
                         <p>Last name: {player.lastName}</p>

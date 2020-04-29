@@ -57,7 +57,7 @@ export class Home extends React.Component {
 
         if (!this.props.user) {
             return (
-                <div>
+                <div className={"no-user"}>
                     <p className={"alert alert-warning"}>To see your collection you have to
                         <Link role="button" to={"/login"}> login </Link> or you can <Link
                             role="button" to={"/description"}> view all collectibles </Link></p>
@@ -89,7 +89,7 @@ export class Home extends React.Component {
                         if (!duplicates[player.id].displayed) {
                             counter++;
                             duplicates[player.id].displayed = true;
-                            return (<div key={index + "player-card"} className={"alert alert-info"}>
+                            return (<div key={index + "player-card"} className={"alert alert-info single-player"}>
                                 <p>{counter}.</p>
                                 <p>Name: {player.name}</p>
                                 <p>Last name: {player.lastName}</p>

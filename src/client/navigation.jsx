@@ -11,27 +11,21 @@ export class Navigation extends React.Component {
 
     logOut = async () => {
         const url = "/api/logout";
-
         let response;
-
         try {
             response = await fetch(url, {method: "post"});
         } catch (error) {
             this.setState({error: "Failed to connect to server: " + error});
             return;
         }
-
         if (response.status !== 204) {
-
-
             this.setState({error: "Error when connecting to server: status code " + response.status});
-
             return;
         }
-
         this.props.updateLoggedInUser(null);
         this.props.history.push("/");
-
+        //Force rerender, remove errors if any
+        this.setState({error:null})
     };
 
 

@@ -79,7 +79,6 @@ export class LootBoxes extends React.Component {
         let url = "/api/user/loot";
         let response;
         let payload;
-
         try {
             response = await fetch(url, {method: "get"});
         } catch (e) {
@@ -88,6 +87,7 @@ export class LootBoxes extends React.Component {
         }
 
         if (response.status === 401) {
+
             //I have custom error for such situations so no handling it here
             return;
         }
@@ -152,17 +152,19 @@ export class LootBoxes extends React.Component {
             )
         }
 
+        if(!this.state.lootBoxesNr )
+            return <p className={"alert alert-warning"}>Loading...</p>
         return (
             <div>
-                <p><b>Pro tip: staying on this page gets you free loot box every 30 seconds</b></p>
-                <p>You have: <b>{this.state.lootBoxesNr} loot boxes </b></p>
-                {this.state.lootBoxesNr?<button onClick={this.openLootBox} className={"btn btn-danger"}>Open loot box</button>:""}
+                <p id={"tipParagraph"}><b>Pro tip: staying on this page gets you free loot box every 30 seconds</b></p>
+                <p>You have: <b><label id={"numberOfBoxesLabel"}>{this.state.lootBoxesNr}</label> loot boxes </b></p>
+                {this.state.lootBoxesNr?<button id={"openBoxBtn"} onClick={this.openLootBox} className={"btn btn-danger"}>Open loot box</button>:""}
                 {this.state.lootedPlayers &&
                 <div>
                     {<div className={"userCollection"}>
                         <h3>You got following players from loot box: </h3>
                         {this.state.lootedPlayers.map((player, index) => {
-                            return (<div key={index + "player-card"} className={"alert alert-info"}>
+                            return (<div key={index + "player-card"} className={"alert alert-info player-card"}>
                                 <p>{index + 1}.</p>
                                 <p>Name: {player.name}</p>
                                 <p>Last name: {player.lastName}</p>

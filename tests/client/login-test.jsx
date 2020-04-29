@@ -5,9 +5,8 @@ const {MemoryRouter} = require('react-router-dom');
 const {overrideFetch, asyncCheckCondition} = require('../mytest-utils');
 const {app} = require('../../src/server/app');
 
-
 const {Login} = require('../../src/client/login');
-const {deleteAllUsers, createUser} = require('../../src/server/db/users');
+const {deleteAllUsers, createUser, i} = require('../../src/server/db/users');
 
 
 beforeEach(deleteAllUsers);

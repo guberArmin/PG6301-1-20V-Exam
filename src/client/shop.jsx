@@ -20,7 +20,7 @@ export class Shop extends React.Component{
             return;
         }
 
-        if (response.status === 400) {
+        if (response.status === 403) {
             this.setState({error: "Failed buying box, insufficient funds: "});
             return;
         }

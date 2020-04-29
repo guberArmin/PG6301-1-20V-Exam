@@ -1,4 +1,4 @@
-//This test file is inspired by: https://github.com/arcuri82/web_development_and_api_design/blob/master/exercise-solutions/quiz-game/part-10/tests/client/signup-test.jsx
+//This test file is copy of: https://github.com/arcuri82/web_development_and_api_design/blob/master/exercise-solutions/quiz-game/part-10/tests/client/signup-test.jsx
 const React = require('react');
 const {mount} = require('enzyme');
 const {MemoryRouter} = require('react-router-dom');
@@ -8,10 +8,10 @@ const {app} = require('../../src/server/app');
 
 
 const {SignUp} = require('../../src/client/signup');
-const {resetAllUsers, getUser, createUser} = require('../../src/server/db/users');
+const {deleteAllUsers, getUser, createUser} = require('../../src/server/db/users');
 
 
-beforeEach(resetAllUsers);
+beforeEach(deleteAllUsers);
 
 
 function fillForm(driver, id, password, confirm){
@@ -55,7 +55,7 @@ test("Test password mismatch", async () => {
 
 test("Create user", async () =>{
 
-    const userId = "Foo";
+    const userId = "b";
     expect(getUser(userId)).toEqual(undefined);
 
     overrideFetch(app);

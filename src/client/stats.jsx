@@ -81,16 +81,16 @@ export class Stats extends React.Component {
 
     };
 
-    sellDuplicate = async (id) =>{
-        if(!confirm("Are you sure that you want to sell this card? "))
+    sellDuplicate = async (id) => {
+        if (!confirm("Are you sure that you want to sell this card? "))
             return;
 
         const url = "/api/user/players/" + id;
         let response;
 
-        try{
-            response = await fetch(url,{method:"delete"});
-        }catch (e) {
+        try {
+            response = await fetch(url, {method: "delete"});
+        } catch (e) {
             this.setState({error: "Failed to connect to server:" + e});
             return;
         }
@@ -125,7 +125,7 @@ export class Stats extends React.Component {
             return (
                 <div>
                     <p className={"alert alert-warning"}>To see your collection you have to
-                        <Link role="button" to={"/login"} > login </Link> or you can <Link
+                        <Link role="button" to={"/login"}> login </Link> or you can <Link
                             role="button" to={"/description"}> view all collectibles </Link></p>
                 </div>
             )
@@ -140,11 +140,12 @@ export class Stats extends React.Component {
         if (this.state.showMissing) {
             return (
                 <div>
-                    <button className={"btn btn-info"} onClick={this.buttonController}>{this.state.buttonText}</button>
-                    <h3>You are missing: {this.state.missing.length} cards;
+                    <button id={"showDuplicatesBtn"} className={"btn btn-info"}
+                            onClick={this.buttonController}>{this.state.buttonText}</button>
+                    <h3 id={"missingHeader"}>You are missing: {this.state.missing.length} cards;
                     </h3>
                     {this.state.missing.map((player, index) => {
-                        return (<div key={index + "player-card"} className={"alert alert-info"}>
+                        return (<div key={index + "player-card"} className={"alert player-card alert-info"}>
                             <p>Name: {player.name}</p>
                             <p>Last name: {player.lastName}</p>
                             <p>Nationality: {player.nationality}</p>
@@ -160,21 +161,29 @@ export class Stats extends React.Component {
         }
 
         let duplicates = checkForDuplicates(this.state.owned);
+        let numberOfDuplicates = 0;
+        Object.values(duplicates).forEach(p => {
+            if (p.numberOfCopies > 1) numberOfDuplicates += p.numberOfCopies - 1
+        });
         return (
             <div>
-                <button className={"btn btn-info"} onClick={this.buttonController}>{this.state.buttonText}</button>
-                <h3>You have: {Object.values(duplicates).filter(p => p.numberOfCopies >1).length} duplicates</h3>
+                <button id={"showMissingButton"} className={"btn btn-info"}
+                        onClick={this.buttonController}>{this.state.buttonText}</button>
+                <h3 id={"duplicatesHeader"}>You have: {numberOfDuplicates} duplicates</h3>
                 {this.state.owned.map((player, index) => {
                     if (!duplicates[player.id].displayed && duplicates[player.id].numberOfCopies > 1) {
                         duplicates[player.id].displayed = true;
-                        return (<div key={index + "player-card"} className={"alert alert-info"}>
+                        return (<div key={index + "player-card"} className={"alert alert-info player-card"}>
                             <p>Name: {player.name}</p>
                             <p>Last name: {player.lastName}</p>
                             <p>Nationality: {player.nationality}</p>
                             <p>Team: {player.team}</p>
                             <p>Age: {player.age}</p>
                             <p>Number of extra copies owned: {duplicates[player.id].numberOfCopies - 1}</p>
-                            <button className={"btn btn-danger"} onClick={() => {this.sellDuplicate(player.id)}}>Sell one duplicate</button>
+                            <button className={"btn btn-danger duplicate-button"} onClick={() => {
+                                this.sellDuplicate(player.id)
+                            }}>Sell one duplicate
+                            </button>
                             <br/>
                         </div>);
                     }

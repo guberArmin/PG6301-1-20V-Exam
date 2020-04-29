@@ -33,7 +33,6 @@ passport.use(new LocalStrategy(
     function (userId, password, done) {
 
         const ok = users.checkCredentials(userId, password);
-
         if (!ok) {
             return done(null, false, {message: 'Invalid username/password'});
         }

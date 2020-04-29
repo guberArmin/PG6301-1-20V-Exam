@@ -5,22 +5,22 @@
 const players = require("./players-collection");
 const users = new Map();
 
+function defaultUsersInitialization() {
+    deleteAllUsers();
 //Some users for testing
-createUser("foo", "foo");
-createUser("bar", "bar");
+    createUser("foo", "foo");
+    createUser("bar", "bar");
 //Add some dummy data to user
-addPlayerToUser("foo", players.getRandomPlayer());
-addPlayerToUser("foo", players.getRandomPlayer());
-addPlayerToUser("foo", players.getRandomPlayer());
-addPlayerToUser("bar", players.getRandomPlayer());
-addPlayerToUser("bar", players.getRandomPlayer());
-addPlayerToUser("bar", players.getRandomPlayer());
-addPlayerToUser("bar", players.getRandomPlayer());
-addPlayerToUser("bar", players.getRandomPlayer());
-addPlayerToUser("bar", players.getRandomPlayer());
-addPlayerToUser("bar", players.getRandomPlayer());
-addPlayerToUser("bar", players.getRandomPlayer());
-addPlayerToUser("bar", players.getRandomPlayer());
+    addPlayerToUser("foo", players.getRandomPlayer());
+    addPlayerToUser("foo", players.getRandomPlayer());
+    addPlayerToUser("foo", players.getRandomPlayer());
+    //This way we get at least one duplicate that is needed for testing
+    for(let i = 0; i < players.getAllPlayers().length + 1;i++){
+        addPlayerToUser("bar", players.getRandomPlayer());
+    }
+}
+
+defaultUsersInitialization();
 
 function getUser(id) {
     return users.get(id);
@@ -132,5 +132,6 @@ module.exports = {
     deleteAllUsers,
     getUser,
     checkCredentials,
+    defaultUsersInitialization,
     createUser
 };

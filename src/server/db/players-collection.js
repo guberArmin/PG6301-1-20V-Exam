@@ -66,6 +66,7 @@ function getLootSet(){
     lootSet.push(getRandomPlayer());
     return lootSet;
 }
+
 module.exports = {
-    getRandomPlayer,getLootBoxes, getAllPlayers, getLootSet
+   getRandomPlayer,getLootBoxes, getAllPlayers, getLootSet
 };

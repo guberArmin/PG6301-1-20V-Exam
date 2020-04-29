@@ -30,8 +30,8 @@ router.get('/user', function (req, res) {
 });
 
 //Get all players owned by currently logged in user
+//Or filter them by missing players
 router.get('/user/players', function (req, res) {
-
     if (!req.user) {
         res.status(401).send();
         return;
@@ -53,7 +53,6 @@ router.get('/user/players', function (req, res) {
 });
 
 //Delete player from list and add some  geons (money) to user
-//
 router.delete('/user/players/:id', function (req, res) {
     //You have to be logged in to delete player from users list
     if (!req.user) {
@@ -74,7 +73,6 @@ router.delete('/user/players/:id', function (req, res) {
 
 //Get all loot boxes owned by user
 router.get('/user/loot', function (req, res) {
-
     if (!req.user) {
         res.status(401).send();
         return;
@@ -94,7 +92,6 @@ router.get('/user/loot', function (req, res) {
  * But I feel it is more natural to put it here since each loot is connected to single user and not to whole collection of players
  */
 router.post('/user/loot', function (req, res) {
-
     if (!req.user) {
         res.status(401).send();
         return;
