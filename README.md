@@ -61,7 +61,7 @@ different scenarios, and adding more would not make much difference.
 I have fulfilled all requirements from exam text and added some **extra**
 functionality, that is discussed later on.
 
-Code coverage on running `yarn test` is  72.18% for Stmts, on all files.
+Code coverage on running `yarn test` is  71.86% for Stmts, on all files.
 
 ### Extras
 - To make website prettier and user friendly I have used [bootstrap](https://getbootstrap.com/)
@@ -105,7 +105,7 @@ and amount of geons
  On deploying this website to `travis-ci` I got error `Jest did not exit one second after the test run has completed.
 `. Reason for it was that I use `setInterval` to wait 30 seconds before sending loot box to all
 users on `/loot` page. This **was not** problem locally on my machine, but to be able to use
-continuous integration I had to fix it. Up reading on it, among many places I found solution [here](https://httptoolkit.tech/blog/unblocking-node-with-unref)
+continuous integration I had to fix it. Upon reading on it, among many places I found solution [here](https://httptoolkit.tech/blog/unblocking-node-with-unref)
 Making `setInterval` to `unref` made id possible to run on travis without error.
 
-
+    
