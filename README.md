@@ -61,7 +61,7 @@ different scenarios, and adding more would not make much difference.
 I have fulfilled all requirements from exam text and added some **extra**, 
 functionality that is discussed later on.
 
-Code coverage on running `yarn test` is  72.18%
+Code coverage on running `yarn test` is  72.18% for Stmts, on all files.
 
 ### Extras
 - To make website prettier and user friendly I have used [bootstrap](https://getbootstrap.com/) css library and added some
@@ -88,6 +88,9 @@ Here I discuss things that might not be 100% clear, when it comes to my implemen
 - To go back, from any page to home page, just click on loot box icon, in upper left corner
 - On login you get welcome message in navigation bar, in upper right corner, next to number of loot boxes
 and amount of geons
+- In addition to above mentioned technologies, I used technologies from class (such as `nodejs`, `react`, `jest`...),
+ but I feel that it would not be useful  to write each and every one of those 
+ as they are found also in `package.json` 
 
 ### Bugs and challenges
 - Website has no known bugs. I did my best to write tests that are going to prevent mayor bugs.
@@ -101,3 +104,5 @@ that setTimeout from `ws-handler` is done. This leads to approximately 40 second
 of `yarn test`. I felt that this is not huge problem as we do not perform that operation often.
 Solution for this problem I found [here](https://stackoverflow.com/questions/50818367/how-to-fix-err-jest-has-detected-the-following-3-open-handles-potentially-keepin
 ).
+
+
