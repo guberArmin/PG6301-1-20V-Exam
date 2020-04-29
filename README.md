@@ -95,7 +95,7 @@ Here I discuss things that might not be 100% clear, when it comes to my implemen
 - To go back, from any page to home page, just click on loot box icon, in upper left corner
 - On login you get welcome message in navigation bar, in upper right corner, next to number of loot boxes
 and amount of geons
-- In addition to above mentioned technologies, I used technologies from class (such as `nodejs`, `react`, `jest`...),
+- In addition to above mentioned ktechnologies, I used technologies from class (such as `nodejs`, `react`, `jest`...),
  but I feel that it would not be useful  to write each and every one of those 
  as they are found also in `package.json` and in code
 
