@@ -16,6 +16,9 @@ all pictures found on google filter free
 Logo credits go to:
 https://pixabay.com/no/illustrations/tyvegods-boksen-lagre-mystisk-3498166/
 
-disable buying box wihoyt having geons
 
 a bit bigger because of pictures
+
+ad el lint
+
+upload to cloud
