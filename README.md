@@ -44,7 +44,7 @@ loot boxes at the same moment.
 First we have to run `yarn install` to install needed dependencies.
 
 After installing of dependencies is complected `yarn start` is used to start website 
-with server.
+with server. Website is found at `http://localhost:8080/`
 
 ### Default data
 Up on start, server has 15 players. I felt that 15 is good number for testing
