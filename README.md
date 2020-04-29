@@ -67,8 +67,8 @@ Code coverage on running `yarn test` is  72.18%
 - To make website prettier and user friendly I have used [bootstrap](https://getbootstrap.com/) css library and added some
 of my custom css
  
-- I have `eslint` with recommended configuration, with the goal of making code more consistent and avoiding bugs. 
-Plus some extras I found useful.
+- I have `eslint` with recommended configuration (and added some extras I thought would be useful),
+ with the goal of making code more consistent and avoiding bugs. 
 To configure it I have red documentation from official website of `eslint` and among others
 used this [stack overflow](https://stackoverflow.com/a/58954380/3532722) topic to make script for eslint execution with `yarn` 
 Therefor I had to edit default `script` configuration, provided to us by teacher. To run eslint type `yarn lint`
