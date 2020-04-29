@@ -8,15 +8,14 @@ const {app} = require('../../src/server/app');
 
 const {LootBoxes} = require('../../src/client/loot-boxes');
 const {deleteAllUsers ,getUser} = require('../../src/server/db/users');
-
+jest.setTimeout(40000);
 beforeEach(() => {
     deleteAllUsers();
 });
 
 afterAll(async () => {
-    await new Promise(resolve => setTimeout(() => resolve(), 10000)); // avoid jest open handle error
+    await new Promise(resolve => setTimeout(() => resolve(), 31000)); // avoid jest open handle error
 });
-
 async function signup(userId, password) {
     const response = await fetch("/api/signup", {
         method: "post",
@@ -31,20 +30,18 @@ async function signup(userId, password) {
 
 //We should get 2 players from one loot box
 async function waitForPlayersToDisplay(driver) {
-    const displayed = await asyncCheckCondition(() => {
+    return await asyncCheckCondition(() => {
         driver.update();
         return driver.find(".player-card").length === 2;
     }, 2000, 200);
-    return displayed;
 }
 
 //When tip is displayed we know mounting is completed
 async function waitForTipToDisplay(driver) {
-    const displayed = await asyncCheckCondition(() => {
+    return await asyncCheckCondition(() => {
         driver.update();
         return driver.find("#tipParagraph").length > 0;
     }, 4000, 200);
-    return displayed;
 }
 
 test("Test accessing loot box page when not logged in", async () => {
