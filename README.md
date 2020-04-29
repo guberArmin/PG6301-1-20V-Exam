@@ -71,7 +71,7 @@ of my custom css
  with the goal of making code more consistent and avoiding bugs. 
 To configure it I have red documentation from official website of `eslint` and among others
 used this [stack overflow](https://stackoverflow.com/a/58954380/3532722) topic to make script for eslint execution with `yarn` 
-Therefor I had to edit default `script` configuration, provided to us by teacher. To run eslint type `yarn lint`
+Therefor I had to edit default `script` configuration, provided to us by teacher. To run `eslint` type `yarn lint`
 
 - This website is also deployed to heroku and can be found [here](https://api-design-exam.herokuapp.com/)
 
@@ -85,9 +85,9 @@ my train of thought.
 
 ### Special mentions
 Here I discuss things that might not be 100% clear, when it comes to my implementation, and are required by exam text.
-- To go back from each page to home page just click on loot box icon in 
-upper left corner
-- On login you get welcome message in navigation bar
+- To go back, from any page to home page, just click on loot box icon, in upper left corner
+- On login you get welcome message in navigation bar, in upper right corner, next to number of loot boxes
+and amount of geons
 
 ### Bugs and challenges
 - Website has no known bugs. I did my best to write tests that are going to prevent mayor bugs.
@@ -95,8 +95,8 @@ upper left corner
  On deploying this website to `travis-ci` I got error `Jest did not exit one second after the test run has completed.
 `. Reason for it was that I use `setTimeout` to wait 30 seconds before sending loot box to all
 users on `/loot` page. This **was not** problem locally on my machine, but to be able to use
-continuous integration I had to adjust test for `loot-boxes component` 
-setting `jest.setTimeout(32000)` and after all tests are done wait for 31 seconds to be sure
+continuous integration I had to adjust test for `loot-boxes component`.
+I did this by setting `jest.setTimeout(32000)` and after all tests are done wait for 31 seconds (using promise with setTimeout) to be sure
 that setTimeout from `ws-handler` is done. This leads to approximately 40 seconds testing on running
 of `yarn test`. I felt that this is not huge problem as we do not perform that operation often.
 Solution for this problem I found [here](https://stackoverflow.com/questions/50818367/how-to-fix-err-jest-has-detected-the-following-3-open-handles-potentially-keepin
