@@ -9,7 +9,6 @@ let ews;
  */
 function init(app) {
     //Every 30 seconds send loot box to use
-    //User can hold maximum of 99 loot boxes, so that they don't farm loot boxes by staying online
     setTimeout(() => sendLootBoxesToOnlineUsers(),30000);
     ews = express_ws(app);
     app.ws('/', function (socket, req) {

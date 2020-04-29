@@ -8,7 +8,7 @@ const {app} = require('../../src/server/app');
 
 const {LootBoxes} = require('../../src/client/loot-boxes');
 const {deleteAllUsers ,getUser} = require('../../src/server/db/users');
-jest.setTimeout(40000);
+jest.setTimeout(32000);
 beforeEach(() => {
     deleteAllUsers();
 });
