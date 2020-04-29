@@ -1,10 +1,10 @@
 [![Build Status](https://travis-ci.com/guberArmin/PG6301-1-20V-Exam.svg?token=m6BpjWymm3UWnZ6QxDwC&branch=master)](https://travis-ci.com/guberArmin/PG6301-1-20V-Exam)
 
-#About
+# About
 
 This is website that is implementing [gotcha game](https://en.wikipedia.org/wiki/Gacha_game)
 where you collect football players by opening loot boxes.
-####Rules:
+#### Rules:
 - Upon registration you recive 3 free loot boxes
 - If you are at `/loot` every 30 seconds you get one free loot box 
 - Up on opening box you get 2 players from it
@@ -12,7 +12,7 @@ where you collect football players by opening loot boxes.
 - One sold player gets you `50 geons` and one loot box costs `200 geons`
 - You can not sell players that are not duplicates 
 
-#Exam reflections
+# Exam reflections
 
 ####Size
 My project is a **bit bigger** in size because I have 
