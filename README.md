@@ -58,13 +58,14 @@ different scenarios, and adding more would not make much difference.
    - `user name`: **foo**`password`: **foo** - By default gets 3 random players
   
 ### Requirements
-I have fulfilled all requirements from exam text and added some **extra**, 
-functionality that is discussed later on.
+I have fulfilled all requirements from exam text and added some **extra**
+functionality, that is discussed later on.
 
 Code coverage on running `yarn test` is  72.18% for Stmts, on all files.
 
 ### Extras
-- To make website prettier and user friendly I have used [bootstrap](https://getbootstrap.com/) css library and added some
+- To make website prettier and user friendly I have used [bootstrap](https://getbootstrap.com/)
+ css library that is found at `public/boostrap.min.css`. Also I have added some
 of my custom css
  
 - I have `eslint` with recommended configuration (and added some extras I thought would be useful),
@@ -82,6 +83,7 @@ icon of passing build to this `README.md` (found at beginning of the file)
 - Although it was not required to comment our code I felt it was good idea to do
 it. Both for me while developing website and for examiners to understand
 my train of thought.
+- Added pictures of all players under `/public/player-pictures`
 
 ### Special mentions
 Here I discuss things that might not be 100% clear, when it comes to my implementation, and are required by exam text.
