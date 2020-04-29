@@ -37,7 +37,7 @@ testing simpler (both for me and examiners).
 It can happen that 
 user gets box right away on coming to `loot`, as server starts counting on first open
 websocket. I felt that it would be just unnecessary strain on servers resources to hold timer
-for each user connected with websocket and send loot boxes individually, that is why all users recive
+for each user connected with websocket and send loot boxes individually. That is why all users recive
 loot boxes at the same moment.
 
 ### Running application
