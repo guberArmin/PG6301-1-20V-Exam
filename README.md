@@ -8,8 +8,8 @@ where you collect football players by opening loot boxes.
 - Upon registration you recive 3 free loot boxes
 - If you are at `/loot` page, you get one free loot box every 30 seconds  
 - Up on opening box you get 2 players from it
-- Duplicate players can be sold for virtual currency `geons`
-- For each player you sell `50 geons`, and one loot box costs `200 geons`
+- Duplicate players can be sold for virtual currency `geons` (homage to `Kal Online`)
+- For each player you sell you get `50 geons`, and one loot box costs `200 geons`
 - You can not sell players that are not duplicates 
 
 # Exam reflections
