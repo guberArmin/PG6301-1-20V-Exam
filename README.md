@@ -1,9 +1,12 @@
 [![Build Status](https://travis-ci.com/guberArmin/PG6301-1-20V-Exam.svg?token=m6BpjWymm3UWnZ6QxDwC&branch=master)](https://travis-ci.com/guberArmin/PG6301-1-20V-Exam)
 
 # About
+This is solution of 48 hours exam in `Webutvikling og API-design`. 
+You can read exam text [here](Exam_text_PG6301.pdf)
 
 This is website that is implementing [gotcha game](https://en.wikipedia.org/wiki/Gacha_game),
 where you collect football players by opening loot boxes.
+
 This website is also deployed to heroku and can be found [here](https://api-design-exam.herokuapp.com/)
 
 ### Rules:
