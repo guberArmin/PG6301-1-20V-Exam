@@ -4,6 +4,8 @@
 
 This is website that is implementing [gotcha game](https://en.wikipedia.org/wiki/Gacha_game),
 where you collect football players by opening loot boxes.
+This website is also deployed to heroku and can be found [here](https://api-design-exam.herokuapp.com/)
+
 ### Rules:
 - Upon registration you recive 3 free loot boxes
 - If you are at `/loot` page, you get one free loot box every 30 seconds  
